@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Main\AppLayer.h" />
+    <ClInclude Include="..\Main\AppLayerStd.h" />
+    <ClInclude Include="..\Main\Init.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Main\AppLayer.cpp" />
+    <ClCompile Include="..\Main\AppLayerStd.cpp" />
+    <ClCompile Include="..\Main\Init.cpp" />
+    <ClCompile Include="..\Main\Main.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{A8AB26EA-2711-4801-BF80-AA27FDF96726}</ProjectGuid>
+    <RootNamespace>Soma</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\..\Test\$(PlatformName)$(Configuration)\</OutDir>
+    <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\3rdParty\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Utilities;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\UI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scripting;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\AI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Main;d:\Users\User\Documents\GitHub\SomaMkI\Lib\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scene;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Graphics;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject\Components;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\EventManager;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Audio;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\..\Game\$(PlatformName)$(Configuration)\</OutDir>
+    <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\3rdParty\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Utilities;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\UI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scripting;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\AI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Main;d:\Users\User\Documents\GitHub\SomaMkI\Lib\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scene;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Graphics;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject\Components;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\EventManager;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Audio;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\..\Test\$(PlatformName)$(Configuration)\</OutDir>
+    <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\3rdParty\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Utilities;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\UI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scripting;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\AI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Main;d:\Users\User\Documents\GitHub\SomaMkI\Lib\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scene;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Graphics;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject\Components;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\EventManager;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Audio;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\..\Game\$(PlatformName)$(Configuration)\</OutDir>
+    <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\3rdParty\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Utilities;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\UI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scripting;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\AI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Main;d:\Users\User\Documents\GitHub\SomaMkI\Lib\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scene;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Graphics;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject\Components;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\EventManager;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Audio;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
