@@ -1,10 +1,14 @@
 
 #include "AppLayer.h"
-#include <iostream>
+//#include <iostream>
+#include <windows.h>  
+#include <tchar.h>
 
 #define MEGABYTE 1048576
 
 //AppLayer *g_pApp = NULL;
+//static TCHAR szWindowClass[] = _T("win32app");
+//static TCHAR szTitle[] = _T("Win32 Guided Tour Application");
 
 AppLayer::AppLayer()
 {
@@ -20,6 +24,7 @@ HWND AppLayer::GetHwnd()
 */
 bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int screenWidth, int screenHeight)
 {
+	/*
 	std::cout << "Checking for existing instance..." << std::endl;
 	if (!Init::IsOnlyInstance(GetGameTitle()))
 	{
@@ -53,8 +58,45 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, in
 
 		resourceCheck = true;
 	}
+	*/
 
 	m_hInstance = hInstance;
+
+	// The parameters to CreateWindow explained:  
+	// szWindowClass: the name of the application  
+	// szTitle: the text that appears in the title bar  
+	// WS_OVERLAPPEDWINDOW: the type of window to create  
+	// CW_USEDEFAULT, CW_USEDEFAULT: initial position (x, y)  
+	// 500, 100: initial size (width, length)  
+	// NULL: the parent of this window  
+	// NULL: this application does not have a menu bar  
+	// hInstance: the first parameter from WinMain  
+	// NULL: not used in this application  
+
+	if (hWnd == NULL)
+	{
+		hWnd = CreateWindow(
+			_T("win32app"),
+			_T("SomaEngine"),
+			WS_OVERLAPPEDWINDOW,
+			CW_USEDEFAULT, CW_USEDEFAULT,
+			SCREEN_WIDTH, SCREEN_HEIGHT,
+			NULL,
+			NULL,
+			hInstance,
+			NULL
+		);
+	}
+
+	if (!hWnd)
+	{
+		MessageBox(NULL,
+			_T("Call to CreateWindow failed!"),
+			_T("SomaEngine"),
+			NULL);
+
+		return 0;
+	}
 
 	/*
 	DXUTInit(false, false, lpCmdLine, false);
@@ -77,4 +119,9 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, in
 	m_bIsRunning = true;
 
 	return TRUE;
+}
+
+LRESULT CALLBACK AppLayer::MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	return 0;
 }
