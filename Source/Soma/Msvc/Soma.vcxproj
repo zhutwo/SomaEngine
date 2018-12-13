@@ -19,15 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Input\InputInterface.h" />
     <ClInclude Include="..\Main\AppLayer.h" />
     <ClInclude Include="..\Main\AppLayerStd.h" />
     <ClInclude Include="..\Main\Init.h" />
+    <ClInclude Include="..\Utilities\types.h" />
+    <ClInclude Include="SomaStd.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Main\AppLayer.cpp" />
     <ClCompile Include="..\Main\AppLayerStd.cpp" />
     <ClCompile Include="..\Main\Init.cpp" />
     <ClCompile Include="..\Main\Main.cpp" />
+    <ClCompile Include="SomaStd.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -85,28 +89,28 @@
     <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\3rdParty\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Utilities;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\UI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scripting;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\AI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Main;d:\Users\User\Documents\GitHub\SomaMkI\Lib\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scene;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Graphics;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject\Components;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\EventManager;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Audio;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\..\Game\$(PlatformName)$(Configuration)\</OutDir>
     <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\3rdParty\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Utilities;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\UI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scripting;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\AI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Main;d:\Users\User\Documents\GitHub\SomaMkI\Lib\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scene;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Graphics;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject\Components;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\EventManager;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Audio;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\..\Test\$(PlatformName)$(Configuration)\</OutDir>
     <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\3rdParty\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Utilities;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\UI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scripting;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\AI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Main;C:\Users\John\Documents\GitHub\SomaMkI\Source\Soma\3rdParty\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scene;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Graphics;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject\Components;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\EventManager;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Audio;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\..\Game\$(PlatformName)$(Configuration)\</OutDir>
     <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\3rdParty\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Utilities;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\UI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scripting;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\AI;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Main;d:\Users\User\Documents\GitHub\SomaMkI\Lib\DXUT;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Scene;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Graphics;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject\Components;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\GameObject;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\EventManager;d:\Users\User\Documents\GitHub\SomaMkI\Source\Soma\Audio;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -8,8 +8,9 @@ All work no play makes Jack a dull boy.
 //#include "AppLayer.h"
 #include <windows.h>  
 #include <stdlib.h> 
-#include <string.h>
+#include <string>
 #include <tchar.h>
+#include <vector>
 //#include <iostream>
 //#include <io.h>
 //#include <fcntl.h>
@@ -20,11 +21,11 @@ All work no play makes Jack a dull boy.
 static TCHAR szWindowClass[] = _T("win32app");
 
 // The string that appears in the application's title bar.  
-static TCHAR szTitle[] = _T("Win32 Guided Tour Application");
+static TCHAR szTitle[] = _T("SomaEngine");
 
 HINSTANCE hInst;
 
-LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+LRESULT APIENTRY WndProc(HWND, UINT, WPARAM, LPARAM);
 
 INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow) {
 
@@ -66,7 +67,7 @@ INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	{
 		MessageBox(NULL,
 			_T("Call to RegisterClassEx failed!"),
-			_T("Win32 Guided Tour"),
+			_T("SomaEngine"),
 			NULL);
 
 		return 1;
@@ -90,7 +91,7 @@ INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	{
 		MessageBox(NULL,
 			_T("Call to CreateWindow failed!"),
-			_T("Win32 Guided Tour"),
+			_T("SomaEngine"),
 			NULL);
 
 		return 1;
@@ -119,24 +120,56 @@ INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	return 0;
 }
 
-LRESULT CALLBACK WndProc(_In_ HWND   hWnd, _In_ UINT   uMsg,	_In_ WPARAM wParam,	_In_ LPARAM lParam)
+int x;
+int y;
+std::wstring text = _T("Type something or click the mouse.");
+LPCWSTR lpcText = text.c_str();
+std::wstring strX = _T("0");
+std::wstring strY = _T("0");
+LPCWSTR lpcX = strX.c_str();
+LPCWSTR lpcY = strY.c_str();
+TCHAR mouseX[] = _T("Mouse X: ");
+TCHAR mouseY[] = _T("Mouse Y: ");
+
+LRESULT APIENTRY WndProc(_In_ HWND   hWnd, _In_ UINT   uMsg,	_In_ WPARAM wParam,	_In_ LPARAM lParam)
 {
 	PAINTSTRUCT ps;
 	HDC hdc;
-	TCHAR greeting[] = _T("Hello, World!");
 
 	switch (uMsg)
 	{
+	case WM_LBUTTONDOWN:
+		text = _T("Left Click");
+		lpcText = text.c_str();
+		InvalidateRect(hWnd, 0, TRUE);
+		break;
+	case WM_RBUTTONDOWN:
+		text = _T("Right Click");
+		lpcText = text.c_str();
+		InvalidateRect(hWnd, 0, TRUE);
+		break;
+	case WM_MOUSEMOVE:
+		x = LOWORD(lParam);
+		y = HIWORD(lParam);
+		strX = std::to_wstring(x);
+		strY = std::to_wstring(y);
+		lpcX = strX.c_str();
+		lpcY = strY.c_str();
+		InvalidateRect(hWnd, 0, TRUE);
+		break;
+	case WM_CHAR:
+		text = wParam;
+		lpcText = text.c_str();
+		InvalidateRect(hWnd, 0, TRUE);
+		break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 
-		// Here your application is laid out.  
-		// For this introduction, we just print out "Hello, World!"  
-		// in the top left corner.  
-		TextOut(hdc,
-			5, 5,
-			greeting, _tcslen(greeting));
-		// End application-specific layout section.  
+		TextOut(hdc, 10, 10, mouseX, _tcslen(mouseX));
+		TextOut(hdc, 100, 10, lpcX, _tcslen(lpcX));
+		TextOut(hdc, 10, 30, mouseY, _tcslen(mouseY));
+		TextOut(hdc, 100, 30, lpcY, _tcslen(lpcY));
+		TextOut(hdc, 10, 70, lpcText, _tcslen(lpcText));
 
 		EndPaint(hWnd, &ps);
 		break;
