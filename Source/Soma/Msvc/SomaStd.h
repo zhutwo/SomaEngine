@@ -22,4 +22,5 @@
 #include <map>
 
 // Utilities
-#include "..\Utilities\types.h"
+#include "../Utilities/types.h"
+#include "../Utilities/templates.h"

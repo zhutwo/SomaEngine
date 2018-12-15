@@ -19,14 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\EventManager\EventManager.h" />
+    <ClInclude Include="..\EventManager\Events.h" />
+    <ClInclude Include="..\EventManager\EventTester.h" />
     <ClInclude Include="..\Input\InputInterface.h" />
     <ClInclude Include="..\Main\AppLayer.h" />
     <ClInclude Include="..\Main\AppLayerStd.h" />
     <ClInclude Include="..\Main\Init.h" />
+    <ClInclude Include="..\Utilities\templates.h" />
     <ClInclude Include="..\Utilities\types.h" />
     <ClInclude Include="SomaStd.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\EventManager\EventManager.cpp" />
+    <ClCompile Include="..\EventManager\Events.cpp" />
     <ClCompile Include="..\Main\AppLayer.cpp" />
     <ClCompile Include="..\Main\AppLayerStd.cpp" />
     <ClCompile Include="..\Main\Init.cpp" />
@@ -89,28 +95,28 @@
     <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(ProjectDir)..\Utilities\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\..\Game\$(PlatformName)$(Configuration)\</OutDir>
     <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(ProjectDir)..\Utilities\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\..\Test\$(PlatformName)$(Configuration)\</OutDir>
     <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(ProjectDir)..\Utilities\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\..\Game\$(PlatformName)$(Configuration)\</OutDir>
     <IntDir>..\..\..\Temp\$(ProjectName)$(PlatformName)$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)$(PlatformName)$(Configuration)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\3rdParty\DXUT;$(ProjectDir)..\Utilities\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

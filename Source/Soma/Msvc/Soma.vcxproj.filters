@@ -14,6 +14,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{4ec91f01-df43-4da2-8228-26de1e89dec1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EventManager">
+      <UniqueIdentifier>{60bba05f-855e-4d96-b567-3a4abe6db082}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Main\AppLayer.h">
@@ -32,6 +35,18 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="SomaStd.h" />
+    <ClInclude Include="..\EventManager\EventManager.h">
+      <Filter>EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EventManager\Events.h">
+      <Filter>EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utilities\templates.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EventManager\EventTester.h">
+      <Filter>EventManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Main\Init.cpp">
@@ -47,5 +62,11 @@
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="SomaStd.cpp" />
+    <ClCompile Include="..\EventManager\EventManager.cpp">
+      <Filter>EventManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\EventManager\Events.cpp">
+      <Filter>EventManager</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

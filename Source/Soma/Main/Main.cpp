@@ -6,11 +6,8 @@ All work no play makes Jack a dull boy.
 
 //#include "Init.h"
 //#include "AppLayer.h"
-#include <windows.h>  
-#include <stdlib.h> 
-#include <string>
-#include <tchar.h>
-#include <vector>
+#include "SomaStd.h"
+#include "../EventManager/EventTester.h"
 //#include <iostream>
 //#include <io.h>
 //#include <fcntl.h>
@@ -27,7 +24,13 @@ HINSTANCE hInst;
 
 LRESULT APIENTRY WndProc(HWND, UINT, WPARAM, LPARAM);
 
+EventTester eventTester;
+const char* eventManager;
+
 INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow) {
+
+	new EventManager(eventManager, true);
+	eventTester.Init();
 
 	// enable console functionality
 	/*
@@ -120,17 +123,6 @@ INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	return 0;
 }
 
-int x;
-int y;
-std::wstring text = _T("Type something or click the mouse.");
-LPCWSTR lpcText = text.c_str();
-std::wstring strX = _T("0");
-std::wstring strY = _T("0");
-LPCWSTR lpcX = strX.c_str();
-LPCWSTR lpcY = strY.c_str();
-TCHAR mouseX[] = _T("Mouse X: ");
-TCHAR mouseY[] = _T("Mouse Y: ");
-
 LRESULT APIENTRY WndProc(_In_ HWND   hWnd, _In_ UINT   uMsg,	_In_ WPARAM wParam,	_In_ LPARAM lParam)
 {
 	PAINTSTRUCT ps;
@@ -139,37 +131,30 @@ LRESULT APIENTRY WndProc(_In_ HWND   hWnd, _In_ UINT   uMsg,	_In_ WPARAM wParam,
 	switch (uMsg)
 	{
 	case WM_LBUTTONDOWN:
-		text = _T("Left Click");
-		lpcText = text.c_str();
+	{
+		std::shared_ptr<EvtData_MouseClick> pClickEvent(new EvtData_MouseClick(0));
+		IEventManager::Get()->VTriggerEvent(pClickEvent);
 		InvalidateRect(hWnd, 0, TRUE);
-		break;
+	}
+	break;
+	case WM_MBUTTONDOWN:
+	{
+		std::shared_ptr<EvtData_MouseClick> pClickEvent(new EvtData_MouseClick(1));
+		IEventManager::Get()->VTriggerEvent(pClickEvent);
+		InvalidateRect(hWnd, 0, TRUE);
+	}
+	break;
 	case WM_RBUTTONDOWN:
-		text = _T("Right Click");
-		lpcText = text.c_str();
+	{
+		std::shared_ptr<EvtData_MouseClick> pClickEvent(new EvtData_MouseClick(2));
+		IEventManager::Get()->VTriggerEvent(pClickEvent);
 		InvalidateRect(hWnd, 0, TRUE);
-		break;
-	case WM_MOUSEMOVE:
-		x = LOWORD(lParam);
-		y = HIWORD(lParam);
-		strX = std::to_wstring(x);
-		strY = std::to_wstring(y);
-		lpcX = strX.c_str();
-		lpcY = strY.c_str();
-		InvalidateRect(hWnd, 0, TRUE);
-		break;
-	case WM_CHAR:
-		text = wParam;
-		lpcText = text.c_str();
-		InvalidateRect(hWnd, 0, TRUE);
-		break;
+	}
+	break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 
-		TextOut(hdc, 10, 10, mouseX, _tcslen(mouseX));
-		TextOut(hdc, 100, 10, lpcX, _tcslen(lpcX));
-		TextOut(hdc, 10, 30, mouseY, _tcslen(mouseY));
-		TextOut(hdc, 100, 30, lpcY, _tcslen(lpcY));
-		TextOut(hdc, 10, 70, lpcText, _tcslen(lpcText));
+		TextOut(hdc, 10, 10, eventTester.GetButtonName(), _tcslen(eventTester.GetButtonName()));
 
 		EndPaint(hWnd, &ps);
 		break;
