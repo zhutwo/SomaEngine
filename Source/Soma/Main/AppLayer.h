@@ -5,7 +5,7 @@ Soma Application Layer
 #pragma once
 
 #include "Init.h"
-#include "dxut.h"
+//#include "dxut.h"
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
