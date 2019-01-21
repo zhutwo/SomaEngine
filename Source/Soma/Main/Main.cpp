@@ -6,48 +6,17 @@ All work no play makes Jack a dull boy.
 
 #include "AppLayer.h"
 #include "SomaStd.h"
-#include "../EventManager/EventTester.h"
 
 AppLayer g_testApp;
 
-// The main window class name.  
-static TCHAR szWindowClass[] = _T("win32app");
-
-// The string that appears in the application's title bar.  
-static TCHAR szTitle[] = _T("SomaEngine");
-
-HINSTANCE hInst;
-
-//LRESULT APIENTRY WndProc(HWND, UINT, WPARAM, LPARAM);
+LRESULT APIENTRY WndProc(HWND, UINT, WPARAM, LPARAM);
 
 INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow) {
-	/*
-	WNDCLASSEX wcex;
-
-	wcex.cbSize = sizeof(WNDCLASSEX);
-	wcex.style = CS_HREDRAW | CS_VREDRAW;
-	wcex.lpfnWndProc = WndProc;
-	wcex.cbClsExtra = 0;
-	wcex.cbWndExtra = 0;
-	wcex.hInstance = hInstance;
-	wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
-	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-	wcex.lpszMenuName = NULL;
-	wcex.lpszClassName = szWindowClass;
-	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
-
-	if (!RegisterClassEx(&wcex))
+	
+	if (!g_testApp.InitInstance(hInstance, lpCmdLine, nCmdShow)) // pass in sys reqs here
 	{
-		MessageBox(NULL,
-			_T("Call to RegisterClassEx failed!"),
-			_T("SomaEngine"),
-			NULL);
-
-		return 1;
+		return 0;
 	}
-	*/
-	g_testApp.InitInstance(hInstance, lpCmdLine, nCmdShow);
 
 	// Main message loop:  
 	MSG msg;

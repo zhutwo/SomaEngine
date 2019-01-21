@@ -4,13 +4,13 @@
 
 #define MEGABYTE 1048576
 
-//AppLayer *g_pApp = NULL;
+AppLayer *g_pApp = NULL;
 static TCHAR szWindowClass[] = _T("win32app");
 static TCHAR szTitle[] = _T("SomaEngine");
 
 AppLayer::AppLayer()
 {
-	//g_pApp = this;
+	g_pApp = this;
 
 	m_bIsRunning = false;
 }
@@ -22,7 +22,7 @@ HWND AppLayer::GetHwnd()
 
 bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow, HWND hWnd, int screenWidth, int screenHeight)
 {
-	
+
 	if (!Init::IsOnlyInstance(GetGameTitle()))
 	{
 		return false;
@@ -52,18 +52,32 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow,
 		resourceCheck = true;
 	}
 
-	m_hInstance = hInstance;
+	WNDCLASSEX wcex;
 
-	// The parameters to CreateWindow explained:  
-	// szWindowClass: the name of the application  
-	// szTitle: the text that appears in the title bar  
-	// WS_OVERLAPPEDWINDOW: the type of window to create  
-	// CW_USEDEFAULT, CW_USEDEFAULT: initial position (x, y)  
-	// 500, 100: initial size (width, length)  
-	// NULL: the parent of this window  
-	// NULL: this application does not have a menu bar  
-	// hInstance: the first parameter from WinMain  
-	// NULL: not used in this application  
+	wcex.cbSize = sizeof(WNDCLASSEX);
+	wcex.style = CS_HREDRAW | CS_VREDRAW;
+	wcex.lpfnWndProc = MsgProc;
+	wcex.cbClsExtra = 0;
+	wcex.cbWndExtra = 0;
+	wcex.hInstance = hInstance;
+	wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	wcex.lpszMenuName = NULL;
+	wcex.lpszClassName = szWindowClass;
+	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+
+	if (!RegisterClassEx(&wcex))
+	{
+		MessageBox(NULL,
+			_T("Call to RegisterClassEx failed!"),
+			_T("SomaEngine"),
+			NULL);
+
+		return false;
+	}
+
+	m_hInstance = hInstance;
 
 	if (hWnd == NULL)
 	{
@@ -79,7 +93,7 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow,
 			NULL
 		);
 	}
-
+	
 	if (!m_hWnd)
 	{
 		MessageBox(NULL,
@@ -90,30 +104,9 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow,
 		return 0;
 	}
 
-	// The parameters to ShowWindow explained:  
-	// hWnd: the value returned from CreateWindow  
-	// nCmdShow: the fourth parameter from WinMain  
 	ShowWindow(m_hWnd,
 		nCmdShow);
 	UpdateWindow(m_hWnd);
-
-	/*
-	DXUTInit(false, false, lpCmdLine, false);
-
-	if (hWnd == NULL)
-	{
-		DXUTCreateWindow(GetGameTitle(), hInstance);
-	}
-	else
-	{
-		DXUTSetWindow(hWnd, hWnd, hWnd);
-	}
-	if (!GetHwnd())
-	{
-		return FALSE;
-	}
-	SetWindowText(GetHwnd(), GetGameTitle());
-	*/
 
 	m_bIsRunning = true;
 
