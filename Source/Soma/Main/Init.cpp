@@ -1,5 +1,6 @@
 
 #include "Init.h"
+#include "SomaStd.h"
 
 bool Init::IsOnlyInstance(LPCTSTR gameTitle)
 {
@@ -33,6 +34,10 @@ bool Init::CheckStorage(const DWORDLONG diskSpaceNeeded)
 	if (diskfree.avail_clusters < neededClusters)
 	{
 		//DEBUG_ERROR(“CheckStorage Failure : Not enough physical storage.”);
+		MessageBox(NULL,
+			_T("Not enough physical storage"),
+			_T("SomaEngine"),
+			NULL);
 		return false;
 	}
 	return true;
@@ -45,12 +50,20 @@ bool Init::CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtua
 	if (status.ullTotalPhys < physicalRAMNeeded)
 	{
 		//DEBUG_ERROR(“CheckMemory Failure : Not enough physical memory.”);
+		MessageBox(NULL,
+			_T("Not enough physical memory"),
+			_T("SomaEngine"),
+			NULL);
 		return false;
 	}
 	// Check for enough free memory.
 	if (status.ullAvailVirtual < virtualRAMNeeded)
 	{
 		//DEBUG_ERROR(“CheckMemory Failure : Not enough virtual memory.”);
+		MessageBox(NULL,
+			_T("Not enough contiguous memory"),
+			_T("SomaEngine"),
+			NULL);
 		return false;
 	}
 	char *buff = DEBUG_NEW char[virtualRAMNeeded];
@@ -62,12 +75,16 @@ bool Init::CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtua
 	{
 		// even though there is enough memory, it isn’t available in one block.
 		//DEBUG_ERROR(“CheckMemory Failure : Not enough contiguous memory.”);
+		MessageBox(NULL,
+			_T("Not enough contiguous memory"),
+			_T("SomaEngine"),
+			NULL);
 		return false;
 	}
 	return true;
 }
 
-DWORD Init::ReadCPUSpeed()
+bool Init::CheckCPUSpeed(const DWORD minCPUSpeed)
 {
 	DWORD BufSize = sizeof(DWORD);
 	DWORD dwMHz = 0;
@@ -80,7 +97,15 @@ DWORD Init::ReadCPUSpeed()
 		// query the key:
 		RegQueryValueEx(hKey, L"~MHz", NULL, &type, (LPBYTE)&dwMHz, &BufSize);
 	}
-	return dwMHz;
+	if (dwMHz < minCPUSpeed)
+	{
+		MessageBox(NULL,
+			_T("Not enough CPU speed"),
+			_T("SomaEngine"),
+			NULL);
+		return false;
+	}
+	return true;
 }
 
 // For Lab 2 only

@@ -4,7 +4,6 @@ All work no play makes Jack a dull boy.
 
 #pragma once
 
-#include "Init.h"
 #include "AppLayer.h"
 #include "SomaStd.h"
 #include "../EventManager/EventTester.h"
@@ -19,16 +18,10 @@ static TCHAR szTitle[] = _T("SomaEngine");
 
 HINSTANCE hInst;
 
-LRESULT APIENTRY WndProc(HWND, UINT, WPARAM, LPARAM);
-
-EventTester eventTester;
-const char* eventManager;
+//LRESULT APIENTRY WndProc(HWND, UINT, WPARAM, LPARAM);
 
 INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow) {
-
-	new EventManager(eventManager, true);
-	eventTester.Init();
-
+	/*
 	WNDCLASSEX wcex;
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -53,37 +46,8 @@ INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
 		return 1;
 	}
-
-	hInst = hInstance;
-
-	HWND hWnd = CreateWindow(
-		szWindowClass,
-		szTitle,
-		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT,
-		640, 480,
-		NULL,
-		NULL,
-		hInstance,
-		NULL
-	);
-
-	if (!hWnd)
-	{
-		MessageBox(NULL,
-			_T("Call to CreateWindow failed!"),
-			_T("SomaEngine"),
-			NULL);
-
-		return 1;
-	}
-
-	// The parameters to ShowWindow explained:  
-	// hWnd: the value returned from CreateWindow  
-	// nCmdShow: the fourth parameter from WinMain  
-	ShowWindow(hWnd,
-		nCmdShow);
-	UpdateWindow(hWnd);
+	*/
+	g_testApp.InitInstance(hInstance, lpCmdLine, nCmdShow);
 
 	// Main message loop:  
 	MSG msg;
@@ -97,52 +61,6 @@ INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
 	//DXUTMainLoop();
 	//DXUTShutdown();
-
-	return 0;
-}
-
-LRESULT APIENTRY WndProc(_In_ HWND   hWnd, _In_ UINT   uMsg,	_In_ WPARAM wParam,	_In_ LPARAM lParam)
-{
-	PAINTSTRUCT ps;
-	HDC hdc;
-
-	switch (uMsg)
-	{
-	case WM_LBUTTONDOWN:
-	{
-		std::shared_ptr<EvtData_MouseClick> pClickEvent(new EvtData_MouseClick(0));
-		IEventManager::Get()->VTriggerEvent(pClickEvent);
-		InvalidateRect(hWnd, 0, TRUE);
-	}
-	break;
-	case WM_MBUTTONDOWN:
-	{
-		std::shared_ptr<EvtData_MouseClick> pClickEvent(new EvtData_MouseClick(1));
-		IEventManager::Get()->VTriggerEvent(pClickEvent);
-		InvalidateRect(hWnd, 0, TRUE);
-	}
-	break;
-	case WM_RBUTTONDOWN:
-	{
-		std::shared_ptr<EvtData_MouseClick> pClickEvent(new EvtData_MouseClick(2));
-		IEventManager::Get()->VTriggerEvent(pClickEvent);
-		InvalidateRect(hWnd, 0, TRUE);
-	}
-	break;
-	case WM_PAINT:
-		hdc = BeginPaint(hWnd, &ps);
-
-		TextOut(hdc, 10, 10, eventTester.GetButtonName(), _tcslen(eventTester.GetButtonName()));
-
-		EndPaint(hWnd, &ps);
-		break;
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
-	default:
-		return DefWindowProc(hWnd, uMsg, wParam, lParam);
-		break;
-	}
 
 	return 0;
 }

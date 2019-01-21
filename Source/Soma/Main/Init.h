@@ -22,7 +22,7 @@ public:
 	// Check for sufficient memory
 	static bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNeeded);
 	// Check CPU speed
-	static DWORD ReadCPUSpeed();
+	static bool CheckCPUSpeed(const DWORD minCPUSpeed);
 
 	// Just for Lab 2
 	static std::wstring GetCPUType();

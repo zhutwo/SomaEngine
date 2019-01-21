@@ -1,14 +1,12 @@
 
 #include "AppLayer.h"
-//#include <iostream>
-#include <windows.h>  
-#include <tchar.h>
+#include "SomaStd.h"
 
 #define MEGABYTE 1048576
 
 //AppLayer *g_pApp = NULL;
-//static TCHAR szWindowClass[] = _T("win32app");
-//static TCHAR szTitle[] = _T("Win32 Guided Tour Application");
+static TCHAR szWindowClass[] = _T("win32app");
+static TCHAR szTitle[] = _T("SomaEngine");
 
 AppLayer::AppLayer()
 {
@@ -16,49 +14,43 @@ AppLayer::AppLayer()
 
 	m_bIsRunning = false;
 }
-/*
+
 HWND AppLayer::GetHwnd()
 {
-	return DXUTGetHWND();
+	return m_hWnd;
 }
-*/
-bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int screenWidth, int screenHeight)
+
+bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow, HWND hWnd, int screenWidth, int screenHeight)
 {
-	/*
-	std::cout << "Checking for existing instance..." << std::endl;
+	
 	if (!Init::IsOnlyInstance(GetGameTitle()))
 	{
-		std::cout << "FAIL! Duplicate instance detected." << std::endl;
 		return false;
 	}
-	std::cout << "PASS! No duplicate instance detected." << std::endl << std::endl;
 
 	bool resourceCheck = false;
 	while (!resourceCheck)
 	{
-		//const DWORDLONG physicalRAM = 512 * MEGABYTE;
-		//const DWORDLONG virtualRAM = 1024 * MEGABYTE;
+		const DWORDLONG physicalRAM = 512 * MEGABYTE;
+		const DWORDLONG virtualRAM = 1024 * MEGABYTE;
 		const DWORDLONG diskSpace = 300 * MEGABYTE;
+		const DWORD minCPU = 1024;
 
-		std::cout << "Checking for sufficient disk space (" << diskSpace << " bytes)..." << std::endl;
 		if (!Init::CheckStorage(diskSpace))
 		{
-			std::cout << "FAIL! Insufficient disk space (" << (unsigned int)Init::GetStorage() << " bytes available)." << std::endl;
 			return false;
 		}
-		std::cout << "PASS! " << (unsigned int)Init::GetStorage() << " bytes available." << std::endl << std::endl;
-
-		std::cout << "Checking available memory..." << std::endl;
-		std::cout << "Virtual: " << (unsigned int)Init::GetVirtualMemory << " bytes available." << std::endl;
-		std::cout << "RAM: " << (unsigned int)Init::GetPhysicalMemory << " bytes available." << std::endl << std::endl;
-
-		std::cout << "Verifying CPU..." << std::endl;
-		std::wcout << Init::GetCPUType() << std::endl;
-		std::cout << (unsigned int)Init::ReadCPUSpeed() << "Mhz" << std::endl << std::endl;
+		if (!Init::CheckMemory(physicalRAM, virtualRAM))
+		{
+			return false;
+		}
+		if (!Init::CheckCPUSpeed(minCPU))
+		{
+			return false;
+		}
 
 		resourceCheck = true;
 	}
-	*/
 
 	m_hInstance = hInstance;
 
@@ -75,7 +67,7 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, in
 
 	if (hWnd == NULL)
 	{
-		hWnd = CreateWindow(
+		m_hWnd = CreateWindow(
 			_T("win32app"),
 			_T("SomaEngine"),
 			WS_OVERLAPPEDWINDOW,
@@ -88,7 +80,7 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, in
 		);
 	}
 
-	if (!hWnd)
+	if (!m_hWnd)
 	{
 		MessageBox(NULL,
 			_T("Call to CreateWindow failed!"),
@@ -97,6 +89,13 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, in
 
 		return 0;
 	}
+
+	// The parameters to ShowWindow explained:  
+	// hWnd: the value returned from CreateWindow  
+	// nCmdShow: the fourth parameter from WinMain  
+	ShowWindow(m_hWnd,
+		nCmdShow);
+	UpdateWindow(m_hWnd);
 
 	/*
 	DXUTInit(false, false, lpCmdLine, false);
