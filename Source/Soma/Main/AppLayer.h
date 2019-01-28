@@ -4,7 +4,7 @@ Soma Application Layer
 
 #pragma once
 
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics.hpp>
 #include "Init.h"
 #include "SomaStd.h"
 
@@ -14,9 +14,8 @@ Soma Application Layer
 class AppLayer
 {
 protected:
-	sf::RenderWindow m_sfWindow;
+	sf::RenderWindow* m_sfWindow;
 	HWND m_hWnd;
-	HWND m_sfView;
 	HINSTANCE m_hInstance;
 	bool m_bIsRunning;
 
@@ -29,7 +28,7 @@ public:
 
 	// change to virtual after engine complete
 	//LPCTSTR GetGameTitle() { return m_cGameTitle; }
-	//sf::RenderWindow* GetSfWindow() { return &m_sfWindow; }
+	sf::RenderWindow* GetSfWindow() { return m_sfWindow; }
 	HWND GetHwnd() { return m_hWnd; }
 	HINSTANCE GetInstance() { return m_hInstance; }
 	bool IsRunning() { return m_bIsRunning; }

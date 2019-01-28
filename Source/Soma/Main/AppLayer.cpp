@@ -9,13 +9,11 @@ static TCHAR szTitle[] = _T("SomaEngine");
 AppLayer::AppLayer()
 {
 	g_pApp = this;
-
 	m_bIsRunning = false;
 }
 
 bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int screenWidth, int screenHeight)
 {
-	
 	if (!Init::IsOnlyInstance(szTitle))
 	{
 		return false;
@@ -85,18 +83,6 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, in
 			hInstance,
 			NULL
 		);
-
-		DWORD Style = WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS;
-		m_sfView = CreateWindow(
-			_T("STATIC"), 
-			NULL, 
-			Style, 
-			0, 0,
-			screenWidth, screenHeight, 
-			m_hWnd, 
-			NULL, 
-			hInstance, 
-			NULL);
 	}
 	
 	if (m_hWnd == NULL)
@@ -109,7 +95,7 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, in
 		return 0;
 	}
 
-	m_sfWindow.create(m_sfView);
+	m_sfWindow = new sf::RenderWindow(m_hWnd);
 
 	m_bIsRunning = true;
 
@@ -142,6 +128,11 @@ void AppLayer::MainLoop()
 		else
 		{
 			// SFML rendering code goes here
+			sf::CircleShape shape(100.f);
+			shape.setFillColor(sf::Color::Green);
+			m_sfWindow->clear();
+			m_sfWindow->draw(shape);
+			m_sfWindow->display();
 		}
 	}
 }
