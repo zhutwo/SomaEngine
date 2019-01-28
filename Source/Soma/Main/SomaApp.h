@@ -11,7 +11,7 @@ Soma Application Layer
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
-class AppLayer
+class SomaApp
 {
 protected:
 	sf::RenderWindow* m_sfWindow;
@@ -24,7 +24,7 @@ protected:
 
 public:
 
-	AppLayer();
+	SomaApp();
 
 	// change to virtual after engine complete
 	//LPCTSTR GetGameTitle() { return m_cGameTitle; }
@@ -40,4 +40,4 @@ public:
 	static LRESULT CALLBACK MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 };
 
-extern AppLayer *g_pApp;
+extern SomaApp *g_pApp;

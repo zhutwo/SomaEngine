@@ -1,18 +1,18 @@
 
-#include "AppLayer.h"
+#include "SomaApp.h"
 
 #define MEGABYTE 1048576
-AppLayer *g_pApp = NULL;
+SomaApp *g_pApp = NULL;
 static TCHAR szWindowClass[] = _T("win32app");
 static TCHAR szTitle[] = _T("SomaEngine");
 
-AppLayer::AppLayer()
+SomaApp::SomaApp()
 {
 	g_pApp = this;
 	m_bIsRunning = false;
 }
 
-bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int screenWidth, int screenHeight)
+bool SomaApp::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int screenWidth, int screenHeight)
 {
 	if (!Init::IsOnlyInstance(szTitle))
 	{
@@ -102,7 +102,7 @@ bool AppLayer::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, in
 	return TRUE;
 }
 
-void AppLayer::MainLoop()
+void SomaApp::MainLoop()
 {
 	/*
 	MSG msg;
@@ -137,7 +137,7 @@ void AppLayer::MainLoop()
 	}
 }
 
-void AppLayer::ShutDown()
+void SomaApp::ShutDown()
 {
 	// Destroy the main window
 	DestroyWindow(m_hWnd);
@@ -146,7 +146,7 @@ void AppLayer::ShutDown()
 	UnregisterClass(szWindowClass, m_hInstance);
 }
 
-LRESULT CALLBACK AppLayer::MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK SomaApp::MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
 	{

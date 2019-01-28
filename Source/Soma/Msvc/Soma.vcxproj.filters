@@ -19,12 +19,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Main\AppLayer.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Main\AppLayerStd.h">
-      <Filter>Main</Filter>
-    </ClInclude>
     <ClInclude Include="..\Main\Init.h">
       <Filter>Main</Filter>
     </ClInclude>
@@ -47,6 +41,12 @@
     <ClInclude Include="..\EventManager\EventTester.h">
       <Filter>EventManager</Filter>
     </ClInclude>
+    <ClInclude Include="..\Main\SomaApp.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Main\SomaAppStd.h">
+      <Filter>Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Main\Init.cpp">
@@ -55,18 +55,18 @@
     <ClCompile Include="..\Main\Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="..\Main\AppLayer.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Main\AppLayerStd.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="SomaStd.cpp" />
     <ClCompile Include="..\EventManager\EventManager.cpp">
       <Filter>EventManager</Filter>
     </ClCompile>
     <ClCompile Include="..\EventManager\Events.cpp">
       <Filter>EventManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Main\SomaApp.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Main\SomaAppStd.cpp">
+      <Filter>Main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
