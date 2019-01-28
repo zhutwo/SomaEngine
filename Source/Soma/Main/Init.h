@@ -5,11 +5,9 @@ Soma Initialization
 #pragma once
 
 #include <crtdbg.h>
-#include <stdlib.h>
-#include <windows.h>
 #include <direct.h>
 #include <string>
-#include "dxut.h"
+#include "SomaStd.h"
 #include "AppLayerStd.h"
 
 class Init

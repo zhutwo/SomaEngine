@@ -1,6 +1,5 @@
 
 #include "Init.h"
-#include "SomaStd.h"
 
 bool Init::IsOnlyInstance(LPCTSTR gameTitle)
 {
