@@ -17,6 +17,9 @@
     <Filter Include="EventManager">
       <UniqueIdentifier>{60bba05f-855e-4d96-b567-3a4abe6db082}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{0f1d547a-fbf5-4391-b577-e1b2c0ccb012}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Main\Init.h">
@@ -47,6 +50,12 @@
     <ClInclude Include="..\Main\SomaAppStd.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="..\Graphics\Scene.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\SceneNode.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Main\Init.cpp">
@@ -67,6 +76,12 @@
     </ClCompile>
     <ClCompile Include="..\Main\SomaAppStd.cpp">
       <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphics\Scene.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphics\SceneNode.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

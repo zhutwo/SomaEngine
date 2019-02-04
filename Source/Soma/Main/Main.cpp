@@ -10,15 +10,15 @@ SomaApp g_testApp;
 
 INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow) 
 {
-	if (!g_pApp->InitInstance(hInstance, lpCmdLine, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
+	if (!g_pApp->InitInstance(hInstance, lpCmdLine, NULL, SCREEN_WIDTH, SCREEN_HEIGHT))
 	{
 		return FALSE;
 	}
-
+	/*
 	ShowWindow(g_pApp->GetHwnd(),
 		nCmdShow);
 	UpdateWindow(g_pApp->GetHwnd());
-
+	*/
 	g_pApp->MainLoop();
 	g_pApp->ShutDown();
 

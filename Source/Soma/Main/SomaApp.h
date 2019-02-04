@@ -5,6 +5,7 @@ Soma Application Layer
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Time.hpp>
 #include "Init.h"
 #include "SomaStd.h"
 

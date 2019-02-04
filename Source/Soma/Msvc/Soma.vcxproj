@@ -22,6 +22,8 @@
     <ClInclude Include="..\EventManager\EventManager.h" />
     <ClInclude Include="..\EventManager\Events.h" />
     <ClInclude Include="..\EventManager\EventTester.h" />
+    <ClInclude Include="..\Graphics\Scene.h" />
+    <ClInclude Include="..\Graphics\SceneNode.h" />
     <ClInclude Include="..\Input\InputInterface.h" />
     <ClInclude Include="..\Main\SomaApp.h" />
     <ClInclude Include="..\Main\SomaAppStd.h" />
@@ -33,6 +35,8 @@
   <ItemGroup>
     <ClCompile Include="..\EventManager\EventManager.cpp" />
     <ClCompile Include="..\EventManager\Events.cpp" />
+    <ClCompile Include="..\Graphics\Scene.cpp" />
+    <ClCompile Include="..\Graphics\SceneNode.cpp" />
     <ClCompile Include="..\Main\SomaApp.cpp" />
     <ClCompile Include="..\Main\SomaAppStd.cpp" />
     <ClCompile Include="..\Main\Init.cpp" />
