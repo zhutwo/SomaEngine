@@ -18,30 +18,6 @@ bool SomaApp::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int
 	{
 		return false;
 	}
-	
-	bool resourceCheck = false;
-	while (!resourceCheck)
-	{
-		const DWORDLONG physicalRAM = 512 * MEGABYTE;
-		const DWORDLONG virtualRAM = 1024 * MEGABYTE;
-		const DWORDLONG diskSpace = 300 * MEGABYTE;
-		const DWORD minCPU = 1024;
-
-		if (!Init::CheckStorage(diskSpace))
-		{
-			return false;
-		}
-		if (!Init::CheckMemory(physicalRAM, virtualRAM))
-		{
-			return false;
-		}
-		if (!Init::CheckCPUSpeed(minCPU))
-		{
-			return false;
-		}
-
-		resourceCheck = true;
-	}
 
 	WNDCLASSEX wcex;
 
@@ -96,10 +72,51 @@ bool SomaApp::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int
 	}
 
 	m_sfWindow = new sf::RenderWindow(m_hWnd);
+	ShowSplash();
+
+	bool resourceCheck = false;
+	while (!resourceCheck)
+	{
+		const DWORDLONG physicalRAM = 512 * MEGABYTE;
+		const DWORDLONG virtualRAM = 1024 * MEGABYTE;
+		const DWORDLONG diskSpace = 300 * MEGABYTE;
+		const DWORD minCPU = 1024;
+
+		if (!Init::CheckStorage(diskSpace))
+		{
+			return false;
+		}
+		if (!Init::CheckMemory(physicalRAM, virtualRAM))
+		{
+			return false;
+		}
+		if (!Init::CheckCPUSpeed(minCPU))
+		{
+			return false;
+		}
+
+		resourceCheck = true;
+	}
 
 	m_bIsRunning = true;
 
 	return TRUE;
+}
+
+void SomaApp::ShowSplash()
+{
+	sf::Texture splashImage;
+	if (!splashImage.loadFromFile("BNS.png"))
+	{
+		MessageBox(NULL,
+			_T("Failed to load splash screen"),
+			_T("SomaEngine"),
+			NULL);
+	}
+	sf::Sprite splashSprite(splashImage);
+	m_sfWindow->clear();
+	m_sfWindow->draw(splashSprite);
+	m_sfWindow->display();
 }
 
 void SomaApp::MainLoop()
@@ -128,11 +145,6 @@ void SomaApp::MainLoop()
 		else
 		{
 			// SFML rendering code goes here
-			sf::CircleShape shape(100.f);
-			shape.setFillColor(sf::Color::Green);
-			m_sfWindow->clear();
-			m_sfWindow->draw(shape);
-			m_sfWindow->display();
 		}
 	}
 }

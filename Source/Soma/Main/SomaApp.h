@@ -9,8 +9,8 @@ Soma Application Layer
 #include "Init.h"
 #include "SomaStd.h"
 
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 768
 
 class SomaApp
 {
@@ -37,6 +37,7 @@ public:
 	bool InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd = NULL, int screenWidth = SCREEN_WIDTH, int screenHeight = SCREEN_HEIGHT);
 	void MainLoop();
 	void ShutDown();
+	void ShowSplash();
 
 	static LRESULT CALLBACK MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 };

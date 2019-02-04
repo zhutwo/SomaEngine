@@ -1,6 +1,8 @@
 #pragma once
 #include "SomaStd.h"
 
+class SceneNode;
+
 typedef std::vector<std::shared_ptr<SceneNode>> SceneNodeList;
 
 class SceneNode
