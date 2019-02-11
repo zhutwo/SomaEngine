@@ -40,6 +40,31 @@
 #include <math.h>
 //#include "../Debug/debugger.h"
 
+struct Vector3
+{
+public:
+	static const Vector3 zero;
+
+public:
+	float x, y, z;
+	Vector3(float _x, float _y, float _z)
+	{
+		x = _x;
+		y = _y;
+		z = _z;
+	}
+};
+
+struct Vector2
+{
+public:
+	float x, y;
+	Vector2(float _x, float _y)
+	{
+		x = _x;
+		y = _y;
+	}
+};
 
 //---------------------------------------------------------------------------------------------------------------------
 // This class represents a single point in 2D space

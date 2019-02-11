@@ -17,8 +17,11 @@
     <Filter Include="EventManager">
       <UniqueIdentifier>{60bba05f-855e-4d96-b567-3a4abe6db082}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics">
+    <Filter Include="Scene">
       <UniqueIdentifier>{0f1d547a-fbf5-4391-b577-e1b2c0ccb012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{62f7cd11-c3ef-4409-9046-61da93b82d1b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -50,11 +53,20 @@
     <ClInclude Include="..\Main\SomaAppStd.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="..\Graphics\Scene.h">
-      <Filter>Graphics</Filter>
+    <ClInclude Include="..\Scene\Scene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\Graphics\SceneNode.h">
-      <Filter>Graphics</Filter>
+    <ClInclude Include="..\Scene\SceneNode.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Component.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Transform.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,11 +89,20 @@
     <ClCompile Include="..\Main\SomaAppStd.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="..\Graphics\Scene.cpp">
-      <Filter>Graphics</Filter>
+    <ClCompile Include="..\Scene\Scene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Graphics\SceneNode.cpp">
-      <Filter>Graphics</Filter>
+    <ClCompile Include="..\Scene\SceneNode.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\GameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Component.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Transform.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

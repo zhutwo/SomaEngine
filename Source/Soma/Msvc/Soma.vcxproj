@@ -22,8 +22,11 @@
     <ClInclude Include="..\EventManager\EventManager.h" />
     <ClInclude Include="..\EventManager\Events.h" />
     <ClInclude Include="..\EventManager\EventTester.h" />
-    <ClInclude Include="..\Graphics\Scene.h" />
-    <ClInclude Include="..\Graphics\SceneNode.h" />
+    <ClInclude Include="..\GameObject\Component.h" />
+    <ClInclude Include="..\GameObject\GameObject.h" />
+    <ClInclude Include="..\GameObject\Transform.h" />
+    <ClInclude Include="..\Scene\Scene.h" />
+    <ClInclude Include="..\Scene\SceneNode.h" />
     <ClInclude Include="..\Input\InputInterface.h" />
     <ClInclude Include="..\Main\SomaApp.h" />
     <ClInclude Include="..\Main\SomaAppStd.h" />
@@ -35,8 +38,11 @@
   <ItemGroup>
     <ClCompile Include="..\EventManager\EventManager.cpp" />
     <ClCompile Include="..\EventManager\Events.cpp" />
-    <ClCompile Include="..\Graphics\Scene.cpp" />
-    <ClCompile Include="..\Graphics\SceneNode.cpp" />
+    <ClCompile Include="..\GameObject\Component.cpp" />
+    <ClCompile Include="..\GameObject\GameObject.cpp" />
+    <ClCompile Include="..\GameObject\Transform.cpp" />
+    <ClCompile Include="..\Scene\Scene.cpp" />
+    <ClCompile Include="..\Scene\SceneNode.cpp" />
     <ClCompile Include="..\Main\SomaApp.cpp" />
     <ClCompile Include="..\Main\SomaAppStd.cpp" />
     <ClCompile Include="..\Main\Init.cpp" />
