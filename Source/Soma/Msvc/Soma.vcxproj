@@ -26,6 +26,7 @@
     <ClInclude Include="..\GameObject\Components\AudioSource.h" />
     <ClInclude Include="..\GameObject\Components\BoxCollider.h" />
     <ClInclude Include="..\GameObject\Components\Collider.h" />
+    <ClInclude Include="..\GameObject\Components\Controller.h" />
     <ClInclude Include="..\GameObject\Components\Rigidbody.h" />
     <ClInclude Include="..\GameObject\GameObject.h" />
     <ClInclude Include="..\GameObject\Renderer.h" />
@@ -49,6 +50,7 @@
     <ClCompile Include="..\GameObject\Components\AudioSource.cpp" />
     <ClCompile Include="..\GameObject\Components\BoxCollider.cpp" />
     <ClCompile Include="..\GameObject\Components\Collider.cpp" />
+    <ClCompile Include="..\GameObject\Components\Controller.cpp" />
     <ClCompile Include="..\GameObject\Components\Rigidbody.cpp" />
     <ClCompile Include="..\GameObject\GameObject.cpp" />
     <ClCompile Include="..\GameObject\Renderer.cpp" />
@@ -61,6 +63,7 @@
     <ClCompile Include="..\Main\SomaAppStd.cpp" />
     <ClCompile Include="..\Main\Init.cpp" />
     <ClCompile Include="..\Main\Main.cpp" />
+    <ClCompile Include="..\TestGame\TestGame.cpp" />
     <ClCompile Include="SomaStd.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

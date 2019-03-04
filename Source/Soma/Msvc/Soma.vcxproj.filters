@@ -95,6 +95,9 @@
     <ClInclude Include="..\Physics\PhysicsEngine.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="..\GameObject\Components\Controller.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Main\Init.cpp">
@@ -151,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="..\Physics\PhysicsEngine.cpp">
       <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TestGame\TestGame.cpp">
+      <Filter>TestGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Components\Controller.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
