@@ -38,8 +38,17 @@
 //========================================================================
 
 #include <math.h>
+#include "SFML/System/Vector2.hpp"
 //#include "../Debug/debugger.h"
 
+typedef sf::Vector2f Vector2;
+
+	static float Vec2Dot(Vector2 a, Vector2 b)
+	{
+		return a.x * b.x + a.y * b.y;
+	}
+
+/*
 struct Vector3
 {
 public:
@@ -47,6 +56,12 @@ public:
 
 public:
 	float x, y, z;
+	Vector3()
+	{
+		x = 0.0f;
+		y = 0.0f;
+		z = 0.0f;
+	}
 	Vector3(float _x, float _y, float _z)
 	{
 		x = _x;
@@ -58,17 +73,26 @@ public:
 struct Vector2
 {
 public:
+	static const Vector2 zero;
+
+public:
 	float x, y;
+	Vector2()
+	{
+		x = 0.0f;
+		y = 0.0f;
+	}
 	Vector2(float _x, float _y)
 	{
 		x = _x;
 		y = _y;
 	}
 };
-
+*/
 //---------------------------------------------------------------------------------------------------------------------
 // This class represents a single point in 2D space
 //---------------------------------------------------------------------------------------------------------------------
+
 class Point
 {
 public:
@@ -199,4 +223,3 @@ public:
 	}
 	void MoveTo(const Point& point) { MoveTo(point.x, point.y); }
 };
-

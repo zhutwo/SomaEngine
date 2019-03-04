@@ -14,11 +14,7 @@ INT WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	{
 		return FALSE;
 	}
-	/*
-	ShowWindow(g_pApp->GetHwnd(),
-		nCmdShow);
-	UpdateWindow(g_pApp->GetHwnd());
-	*/
+
 	g_pApp->MainLoop();
 	g_pApp->ShutDown();
 

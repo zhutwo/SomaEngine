@@ -1,5 +1,6 @@
 
 #include "SomaApp.h"
+#include <future>
 
 #define MEGABYTE 1048576
 SomaApp *g_pApp = NULL;
@@ -71,12 +72,23 @@ bool SomaApp::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int
 		return 0;
 	}
 
-	m_sfWindow = new sf::RenderWindow(m_hWnd);
-	ShowSplash();
+	m_renderWindow = new sf::RenderWindow(m_hWnd);
 
-	bool resourceCheck = false;
-	while (!resourceCheck)
+	auto checkFuture = std::async(std::launch::async,&SomaApp::CheckResources,this);
+	ShowSplash();
+	
+	bool passed = checkFuture.get();
+	if (!passed)
 	{
+		return false;
+	}
+	m_bIsRunning = true;
+
+	return TRUE;
+}
+
+bool SomaApp::CheckResources()
+{
 		const DWORDLONG physicalRAM = 512 * MEGABYTE;
 		const DWORDLONG virtualRAM = 1024 * MEGABYTE;
 		const DWORDLONG diskSpace = 300 * MEGABYTE;
@@ -94,13 +106,7 @@ bool SomaApp::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int
 		{
 			return false;
 		}
-
-		resourceCheck = true;
-	}
-
-	m_bIsRunning = true;
-
-	return TRUE;
+		return true;
 }
 
 void SomaApp::ShowSplash()
@@ -114,9 +120,50 @@ void SomaApp::ShowSplash()
 			NULL);
 	}
 	sf::Sprite splashSprite(splashImage);
-	m_sfWindow->clear();
-	m_sfWindow->draw(splashSprite);
-	m_sfWindow->display();
+
+	float opacity = 0.0f;
+	float time = 0.0f;
+	float fadeInTime = 2.0f;
+	float fadeOutAtTime = 3.0f;
+	float fadeOutTime = 1.0f;
+	float waitTime = 5.0f;
+	m_clock.restart();
+
+	while (true)
+	{
+		time = m_clock.getElapsedTime().asSeconds();
+		if (time < fadeInTime)
+		{
+			opacity = time / fadeInTime;
+		}
+		else if (time >= fadeOutAtTime)
+		{
+			opacity = 1.0f - ((time - fadeOutAtTime)/ fadeOutTime);
+		}
+		else
+		{
+			opacity = 1.0f;
+		}
+		if (opacity > 1.0f)
+		{
+			opacity = 1.0f;
+		}
+		else if (opacity < 0.0f)
+		{
+			opacity = 0.0f;
+		}
+		opacity *= opacity;
+		sf::Color color = splashSprite.getColor();
+		color.a = opacity * 255.0f;
+		splashSprite.setColor(color);
+		m_renderWindow->clear();
+		m_renderWindow->draw(splashSprite);
+		m_renderWindow->display();
+		if (time > waitTime)
+		{
+			break;
+		}
+	}
 }
 
 void SomaApp::MainLoop()

@@ -1,15 +1,12 @@
 #pragma once
+
 #include "SomaStd.h"
 #include "Component.h"
+#include "SFML/Graphics/Transformable.hpp"
 
-class Transform : public Component
+class TransformComponent : public Component, public sf::Transformable
 {
 public:
-	Vector3				position;
-	Vector3				rotation;
-	Vector3				scale;
-
-public:
-	Transform();
-	~Transform();
+	TransformComponent() = default;
+	~TransformComponent() = default;
 };

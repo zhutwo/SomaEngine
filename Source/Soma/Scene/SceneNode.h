@@ -33,10 +33,10 @@ public:
 	SceneNodePtr		DetachChild(const SceneNode& node);
 
 	void				Update(sf::Time dt);
-	void				UpdateSelf(sf::Time dt);
 	void				UpdateChildren(sf::Time dt);
+	virtual void		UpdateSelf(sf::Time dt) {}
 
 	void				Render(sf::RenderTarget& target) const;
-	void				RenderSelf(sf::RenderTarget& target) const;
 	void				RenderChildren(sf::RenderTarget& target) const;
+	virtual void		RenderSelf(sf::RenderTarget& target) const {}
 };

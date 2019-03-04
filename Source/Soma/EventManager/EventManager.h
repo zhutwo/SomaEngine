@@ -3,7 +3,6 @@
 #include <strstream>
 #include "SomaStd.h"
 #include "../3rdParty/FastDelegate/FastDelegate.h"
-#include "../Utilities/templates.h"
 
 class IEventData;
 

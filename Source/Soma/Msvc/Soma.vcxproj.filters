@@ -23,6 +23,12 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{62f7cd11-c3ef-4409-9046-61da93b82d1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestGame">
+      <UniqueIdentifier>{3e7ba783-d50f-4299-a4de-533dd87550a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{35b0b0a0-d47e-43c4-abd0-7119f73de00b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Main\Init.h">
@@ -68,6 +74,27 @@
     <ClInclude Include="..\GameObject\Transform.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\GameObject\SpriteRenderer.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Renderer.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Components\AudioSource.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Components\Collider.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Components\BoxCollider.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Components\Rigidbody.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Physics\PhysicsEngine.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Main\Init.cpp">
@@ -103,6 +130,27 @@
     </ClCompile>
     <ClCompile Include="..\GameObject\Transform.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\SpriteRenderer.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Renderer.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Components\AudioSource.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Components\Collider.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Components\BoxCollider.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Components\Rigidbody.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Physics\PhysicsEngine.cpp">
+      <Filter>Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

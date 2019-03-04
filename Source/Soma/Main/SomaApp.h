@@ -15,10 +15,12 @@ Soma Application Layer
 class SomaApp
 {
 protected:
-	sf::RenderWindow* m_sfWindow;
-	HWND m_hWnd;
-	HINSTANCE m_hInstance;
-	bool m_bIsRunning;
+	sf::RenderWindow*				m_renderWindow;
+	HWND							m_hWnd;
+	HINSTANCE						m_hInstance;
+	bool							m_bIsRunning;
+	sf::Clock						m_clock;
+	sf::Time						m_frameTime;
 
 	// remove after engine complete
 	//LPCTSTR m_cGameTitle = L"SomaEngine";
@@ -29,12 +31,13 @@ public:
 
 	// change to virtual after engine complete
 	//LPCTSTR GetGameTitle() { return m_cGameTitle; }
-	sf::RenderWindow* GetSfWindow() { return m_sfWindow; }
+	sf::RenderWindow* GetSfWindow() { return m_renderWindow; }
 	HWND GetHwnd() { return m_hWnd; }
 	HINSTANCE GetInstance() { return m_hInstance; }
 	bool IsRunning() { return m_bIsRunning; }
 
 	bool InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd = NULL, int screenWidth = SCREEN_WIDTH, int screenHeight = SCREEN_HEIGHT);
+	bool CheckResources();
 	void MainLoop();
 	void ShutDown();
 	void ShowSplash();

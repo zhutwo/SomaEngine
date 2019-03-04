@@ -35,11 +35,6 @@ void SceneNode::Update(sf::Time dt)
 	UpdateChildren(dt);
 }
 
-void SceneNode::UpdateSelf(sf::Time dt)
-{
-
-}
-
 void SceneNode::UpdateChildren(sf::Time dt)
 {
 	for (SceneNodePtr& child : m_Children)
@@ -52,11 +47,6 @@ void SceneNode::Render(sf::RenderTarget& target) const
 {
 	RenderSelf(target);
 	RenderChildren(target);
-}
-
-void SceneNode::RenderSelf(sf::RenderTarget& target) const
-{
-
 }
 
 void SceneNode::RenderChildren(sf::RenderTarget& target) const
