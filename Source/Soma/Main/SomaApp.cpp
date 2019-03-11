@@ -75,7 +75,7 @@ bool SomaApp::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int
 	m_renderWindow = new sf::RenderWindow(m_hWnd);
 
 	auto checkFuture = std::async(std::launch::async,&SomaApp::CheckResources,this);
-	ShowSplash();
+	//ShowSplash();
 	
 	bool passed = checkFuture.get();
 	if (!passed)
@@ -83,6 +83,7 @@ bool SomaApp::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int
 		return false;
 	}
 	m_bIsRunning = true;
+	m_test.BuildScene();
 
 	return TRUE;
 }
@@ -179,6 +180,11 @@ void SomaApp::MainLoop()
 	return (int)msg.wParam;
 	*/
 
+	sf::Time timeSinceLastUpdate = sf::Time::Zero;
+	m_fixedFrameTime = sf::seconds(1.0f / 60.0f);
+	m_isLimitingFrameRate = true;
+	m_clock.restart();
+
 	MSG Message;
 	Message.message = ~WM_QUIT;
 	while (Message.message != WM_QUIT)
@@ -191,7 +197,24 @@ void SomaApp::MainLoop()
 		}
 		else
 		{
-			// SFML rendering code goes here
+			sf::Time dt = m_clock.restart();
+			if (m_isLimitingFrameRate)
+			{
+				timeSinceLastUpdate += dt;
+				while (timeSinceLastUpdate > m_fixedFrameTime)
+				{
+					timeSinceLastUpdate -= m_fixedFrameTime;
+
+					m_test.testScene.Update(m_fixedFrameTime);
+					m_test.testScene.Render(*m_renderWindow);
+				}
+			}
+			else
+			{
+				m_test.testScene.Update(dt);
+				m_test.testScene.Render(*m_renderWindow);
+			}
+
 		}
 	}
 }

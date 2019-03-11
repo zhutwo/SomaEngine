@@ -7,6 +7,9 @@
 class TransformComponent : public Component, public sf::Transformable
 {
 public:
-	TransformComponent() = default;
+	TransformComponent()
+	{
+		m_Id = 0;
+	}
 	~TransformComponent() = default;
 };

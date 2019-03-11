@@ -8,6 +8,7 @@ Soma Application Layer
 #include <SFML/System/Time.hpp>
 #include "Init.h"
 #include "SomaStd.h"
+#include "../TestGame/TestGame.cpp"
 
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 768
@@ -20,8 +21,9 @@ protected:
 	HINSTANCE						m_hInstance;
 	bool							m_bIsRunning;
 	sf::Clock						m_clock;
-	sf::Time						m_frameTime;
-
+	sf::Time						m_fixedFrameTime;
+	bool							m_isLimitingFrameRate;
+	TestGame						m_test;
 	// remove after engine complete
 	//LPCTSTR m_cGameTitle = L"SomaEngine";
 

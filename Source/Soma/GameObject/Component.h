@@ -19,12 +19,20 @@ class Component
 {
 protected:
 	
+	int							m_Id;
 	bool						m_isActive;
 	std::weak_ptr<GameObject>	m_parent;
 
 public:
 	Component();
 	~Component();
+
+	void SetId(int id)
+	{
+		m_Id = id;
+	}
+
+	int GetId(void) const { return m_Id; }
 
 	virtual bool IsRenderer(void) const { return false; }
 	virtual void Update(sf::Time dt) {}

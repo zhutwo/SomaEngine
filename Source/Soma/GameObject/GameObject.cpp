@@ -40,7 +40,7 @@ void GameObject::RenderSelf(sf::RenderTarget& target) const
 
 void GameObject::AddComponent(SharedComponentPtr component)
 {
-	m_components.insert(std::make_pair(999, component)); // replace 999 with get id
+	m_components.insert(std::make_pair(component->GetId(), component)); // replace 999 with get id
 	if (component->IsRenderer())
 	{
 		m_renderers.push_back(std::dynamic_pointer_cast<Renderer>(component));

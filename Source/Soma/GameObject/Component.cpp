@@ -2,6 +2,7 @@
 #include "GameObject.h"
 
 Component::Component()
+	: m_isActive(true)
 {
 
 }

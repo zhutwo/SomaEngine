@@ -7,20 +7,33 @@ class TestGame
 {
 public:
 	Scene testScene;
-	GameObject player;
-	GameObject background;
-	GameObject bullet;
-	sf::Sprite bgsprite;
-	sf::Texture bgtex;
-
+	//GameObject player;
+	std::shared_ptr<GameObject> background;
+	//GameObject bullet;
+	
 	TestGame()
 	{
-		bgtex.loadFromFile("Space.png");
-		bgsprite.setTexture(bgtex);
-		SpriteRenderer bgsr(bgsprite);
-		auto p = std::make_shared<Component>(bgsr);
-		//background.AddComponent(dynamic_cast(p));
-		//testScene.AttachChild(SceneNodePtr(background));
 	}
 	~TestGame() = default;
+
+	void BuildScene()
+	{
+		background = std::make_shared<GameObject>();
+		sf::Texture bgtex;
+		if (!bgtex.loadFromFile("Space.png"))
+		{
+			MessageBox(NULL,
+				_T("Failed to load background texture"),
+				_T("SomaEngine"),
+				NULL);
+		}
+		sf::Sprite bgsprite;
+		bgsprite.setTexture(bgtex);
+		std::shared_ptr<SpriteRenderer> bgsr = std::make_shared<SpriteRenderer>();
+		bgsr->SetSprite(bgsprite);
+		bgsr->SetId(1);
+
+		background->AddComponent(std::static_pointer_cast<Component>(bgsr));
+		testScene.AttachChild(std::static_pointer_cast<SceneNode>(background));
+	}
 };

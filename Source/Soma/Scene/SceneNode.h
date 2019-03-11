@@ -7,7 +7,7 @@
 
 class SceneNode;
 
-typedef std::unique_ptr<SceneNode> SceneNodePtr;
+typedef std::shared_ptr<SceneNode> SceneNodePtr;
 typedef std::vector<SceneNodePtr> SceneNodeList;
 
 /*
