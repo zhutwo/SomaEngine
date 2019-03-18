@@ -23,7 +23,7 @@ protected:
 	sf::Clock						m_clock;
 	sf::Time						m_fixedFrameTime;
 	bool							m_isLimitingFrameRate;
-	TestGame						m_test;
+	
 	// remove after engine complete
 	//LPCTSTR m_cGameTitle = L"SomaEngine";
 

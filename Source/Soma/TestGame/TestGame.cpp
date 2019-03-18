@@ -10,7 +10,9 @@ public:
 	//GameObject player;
 	std::shared_ptr<GameObject> background;
 	//GameObject bullet;
-	
+	sf::Texture bgtex;
+	sf::Sprite bgsprite;
+
 	TestGame()
 	{
 	}
@@ -19,7 +21,7 @@ public:
 	void BuildScene()
 	{
 		background = std::make_shared<GameObject>();
-		sf::Texture bgtex;
+
 		if (!bgtex.loadFromFile("Space.png"))
 		{
 			MessageBox(NULL,
@@ -27,7 +29,7 @@ public:
 				_T("SomaEngine"),
 				NULL);
 		}
-		sf::Sprite bgsprite;
+
 		bgsprite.setTexture(bgtex);
 		std::shared_ptr<SpriteRenderer> bgsr = std::make_shared<SpriteRenderer>();
 		bgsr->SetSprite(bgsprite);

@@ -83,7 +83,6 @@ bool SomaApp::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int
 		return false;
 	}
 	m_bIsRunning = true;
-	m_test.BuildScene();
 
 	return TRUE;
 }
@@ -179,6 +178,8 @@ void SomaApp::MainLoop()
 
 	return (int)msg.wParam;
 	*/
+	TestGame test;
+	test.BuildScene();
 
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	m_fixedFrameTime = sf::seconds(1.0f / 60.0f);
@@ -205,14 +206,20 @@ void SomaApp::MainLoop()
 				{
 					timeSinceLastUpdate -= m_fixedFrameTime;
 
-					m_test.testScene.Update(m_fixedFrameTime);
-					m_test.testScene.Render(*m_renderWindow);
+					test.testScene.Update(m_fixedFrameTime);
+
+					m_renderWindow->clear();
+					test.testScene.Render(*m_renderWindow);
+					m_renderWindow->display();
 				}
 			}
 			else
 			{
-				m_test.testScene.Update(dt);
-				m_test.testScene.Render(*m_renderWindow);
+				test.testScene.Update(dt);
+
+				m_renderWindow->clear();
+				test.testScene.Render(*m_renderWindow);
+				m_renderWindow->display();
 			}
 
 		}
