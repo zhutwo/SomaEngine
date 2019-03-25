@@ -20,7 +20,7 @@ public:
 
 	void BuildScene()
 	{
-		background = std::make_shared<GameObject>();
+		background = std::make_shared<GameObject>(1);
 
 		if (!bgtex.loadFromFile("Space.png"))
 		{

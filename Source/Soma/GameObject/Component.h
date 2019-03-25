@@ -9,9 +9,6 @@ Base Component class
 
 class Component;
 
-typedef std::shared_ptr<Component> SharedComponentPtr;
-typedef unsigned int ComponentId;
-
 class GameObject;
 class TransformComponent;
 
@@ -19,9 +16,9 @@ class Component
 {
 protected:
 	
-	int							m_Id;
+	ComponentId					m_Id;
 	bool						m_isActive;
-	std::weak_ptr<GameObject>	m_parent;
+	WeakGameObjectPtr			m_parent;
 
 public:
 	Component();

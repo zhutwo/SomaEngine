@@ -41,6 +41,18 @@
 #include "SFML/System/Vector2.hpp"
 //#include "../Debug/debugger.h"
 
+typedef unsigned int ComponentId;
+typedef unsigned int GameObjectId;
+
+const GameObjectId INVALID_GAMEOBJECT_ID = 0;
+const ComponentId INVALID_COMPONENT_ID = 0;
+
+typedef std::shared_ptr<Component> SharedComponentPtr;
+typedef std::weak_ptr<Component> WeakComponentPtr;
+
+typedef std::shared_ptr<GameObject> SharedGameObjectPtr;
+typedef std::weak_ptr<GameObject> WeakGameObjectPtr;
+
 typedef sf::Vector2f Vector2;
 
 	static float Vec2Dot(Vector2 a, Vector2 b)

@@ -3,8 +3,9 @@
 #include "Transform.h"
 #include "Renderer.h"
 
-GameObject::GameObject()
-	: m_transform(new TransformComponent)
+GameObject::GameObject(GameObjectId id)
+	: m_id(id)
+	, m_transform(new TransformComponent)
 	, m_localTransform(new TransformComponent)
 {}
 

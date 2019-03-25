@@ -15,14 +15,15 @@ public:
 	typedef std::vector<std::shared_ptr<Renderer>> RendererList;
 
 private:
+	GameObjectId								m_id;
 	ComponentMap								m_components;
 	RendererList								m_renderers;
 	std::shared_ptr<TransformComponent>			m_transform;
 	std::shared_ptr<TransformComponent>			m_localTransform;
 
 public:
-	GameObject();
-	~GameObject();
+	explicit GameObject(GameObjectId id);
+	~GameObject(void);
 
 	void UpdateSelf(sf::Time dt) override;
 	void RenderSelf(sf::RenderTarget& target) const override;
