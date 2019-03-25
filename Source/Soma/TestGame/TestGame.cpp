@@ -7,11 +7,8 @@ class TestGame
 {
 public:
 	Scene testScene;
-	//GameObject player;
-	std::shared_ptr<GameObject> background;
-	//GameObject bullet;
-	sf::Texture bgtex;
-	sf::Sprite bgsprite;
+	std::vector<std::shared_ptr<sf::Sprite>> spriteList;
+	std::vector<std::shared_ptr<sf::Texture>> textureList;
 
 	TestGame()
 	{
@@ -20,9 +17,14 @@ public:
 
 	void BuildScene()
 	{
-		background = std::make_shared<GameObject>(1);
+		std::shared_ptr<GameObject> background = std::make_shared<GameObject>(1);
 
-		if (!bgtex.loadFromFile("Space.png"))
+		std::shared_ptr<sf::Texture> bgtex = std::make_shared<sf::Texture>();
+		textureList.push_back(bgtex);
+		std::shared_ptr<sf::Sprite> bgsprite = std::make_shared<sf::Sprite>();
+		spriteList.push_back(bgsprite);
+
+		if (!bgtex->loadFromFile("Space.png"))
 		{
 			MessageBox(NULL,
 				_T("Failed to load background texture"),
@@ -30,12 +32,35 @@ public:
 				NULL);
 		}
 
-		bgsprite.setTexture(bgtex);
+		bgsprite->setTexture(*bgtex);
 		std::shared_ptr<SpriteRenderer> bgsr = std::make_shared<SpriteRenderer>();
-		bgsr->SetSprite(bgsprite);
+		bgsr->SetSprite(*bgsprite);
 		bgsr->SetId(1);
 
 		background->AddComponent(std::static_pointer_cast<Component>(bgsr));
 		testScene.AttachChild(std::static_pointer_cast<SceneNode>(background));
+
+		std::shared_ptr<GameObject> entities = std::make_shared<GameObject>(2);
+
+		std::shared_ptr<sf::Texture> entex = std::make_shared<sf::Texture>();
+		textureList.push_back(entex);
+		std::shared_ptr<sf::Sprite> ensprite = std::make_shared<sf::Sprite>();
+		spriteList.push_back(ensprite);
+
+		if (!entex->loadFromFile("Entities.png"))
+		{
+			MessageBox(NULL,
+				_T("Failed to load entities texture"),
+				_T("SomaEngine"),
+				NULL);
+		}
+
+		ensprite->setTexture(*entex);
+		std::shared_ptr<SpriteRenderer> ensr = std::make_shared<SpriteRenderer>();
+		ensr->SetSprite(*ensprite);
+		ensr->SetId(2);
+
+		entities->AddComponent(std::static_pointer_cast<Component>(ensr));
+		testScene.AttachChild(std::static_pointer_cast<SceneNode>(entities));
 	}
 };
