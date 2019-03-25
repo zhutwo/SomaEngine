@@ -98,6 +98,9 @@
     <ClInclude Include="..\GameObject\Components\Controller.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\GameObject\GameObjectFactory.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Main\Init.cpp">
@@ -159,6 +162,9 @@
       <Filter>TestGame</Filter>
     </ClCompile>
     <ClCompile Include="..\GameObject\Components\Controller.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\GameObjectFactory.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>

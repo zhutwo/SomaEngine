@@ -29,6 +29,7 @@
     <ClInclude Include="..\GameObject\Components\Controller.h" />
     <ClInclude Include="..\GameObject\Components\Rigidbody.h" />
     <ClInclude Include="..\GameObject\GameObject.h" />
+    <ClInclude Include="..\GameObject\GameObjectFactory.h" />
     <ClInclude Include="..\GameObject\Renderer.h" />
     <ClInclude Include="..\GameObject\SpriteRenderer.h" />
     <ClInclude Include="..\GameObject\Transform.h" />
@@ -53,6 +54,7 @@
     <ClCompile Include="..\GameObject\Components\Controller.cpp" />
     <ClCompile Include="..\GameObject\Components\Rigidbody.cpp" />
     <ClCompile Include="..\GameObject\GameObject.cpp" />
+    <ClCompile Include="..\GameObject\GameObjectFactory.cpp" />
     <ClCompile Include="..\GameObject\Renderer.cpp" />
     <ClCompile Include="..\GameObject\SpriteRenderer.cpp" />
     <ClCompile Include="..\GameObject\Transform.cpp" />
@@ -165,7 +167,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\3rdParty\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\3rdParty\SFML-2.5.1\include;$(ProjectDir)..\3rdParty\tinyxml_2_6_2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;NOMINMAX;SFML_STATIC;_WINDOWS;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
