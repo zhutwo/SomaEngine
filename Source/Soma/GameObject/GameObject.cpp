@@ -5,6 +5,7 @@
 
 GameObject::GameObject(GameObjectId id)
 	: m_id(id)
+	, m_name("NewGameObject")
 	, m_transform(new TransformComponent)
 	, m_localTransform(new TransformComponent)
 {}
@@ -12,6 +13,22 @@ GameObject::GameObject(GameObjectId id)
 GameObject::~GameObject()
 {
 
+}
+
+bool GameObject::Init(Json data)
+{
+	// add log output
+	if (!data)
+	{
+		return false;
+	}
+
+	m_name = data["name"].get<std::string>();
+
+	Json transformData = data["transform"];
+	m_localTransform->VInit(transformData);
+
+	return true;
 }
 
 void GameObject::UpdateSelf(sf::Time dt)
@@ -41,7 +58,7 @@ void GameObject::RenderSelf(sf::RenderTarget& target) const
 
 void GameObject::AddComponent(SharedComponentPtr component)
 {
-	m_components.insert(std::make_pair(component->GetId(), component)); // replace 999 with get id
+	m_components.insert(std::make_pair(component->GetId(), component));
 	if (component->IsRenderer())
 	{
 		m_renderers.push_back(std::dynamic_pointer_cast<Renderer>(component));

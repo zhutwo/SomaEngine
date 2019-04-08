@@ -35,11 +35,14 @@
     <ClInclude Include="..\GameObject\Transform.h" />
     <ClInclude Include="..\Physics\PhysicsEngine.h" />
     <ClInclude Include="..\Scene\Scene.h" />
+    <ClInclude Include="..\Scene\SceneFactory.h" />
     <ClInclude Include="..\Scene\SceneNode.h" />
     <ClInclude Include="..\Input\InputInterface.h" />
     <ClInclude Include="..\Main\SomaApp.h" />
     <ClInclude Include="..\Main\SomaAppStd.h" />
     <ClInclude Include="..\Main\Init.h" />
+    <ClInclude Include="..\Utilities\ResourceHolder.h" />
+    <ClInclude Include="..\Utilities\String.h" />
     <ClInclude Include="..\Utilities\templates.h" />
     <ClInclude Include="..\Utilities\types.h" />
     <ClInclude Include="SomaStd.h" />
@@ -60,12 +63,15 @@
     <ClCompile Include="..\GameObject\Transform.cpp" />
     <ClCompile Include="..\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="..\Scene\Scene.cpp" />
+    <ClCompile Include="..\Scene\SceneFactory.cpp" />
     <ClCompile Include="..\Scene\SceneNode.cpp" />
     <ClCompile Include="..\Main\SomaApp.cpp" />
     <ClCompile Include="..\Main\SomaAppStd.cpp" />
     <ClCompile Include="..\Main\Init.cpp" />
     <ClCompile Include="..\Main\Main.cpp" />
     <ClCompile Include="..\TestGame\TestGame.cpp" />
+    <ClCompile Include="..\Utilities\ResourceHolder.cpp" />
+    <ClCompile Include="..\Utilities\String.cpp" />
     <ClCompile Include="SomaStd.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -167,7 +173,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\3rdParty\SFML-2.5.1\include;$(ProjectDir)..\3rdParty\tinyxml_2_6_2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\3rdParty\json;$(ProjectDir)..\3rdParty\SFML-2.5.1\include;$(ProjectDir)..\3rdParty\tinyxml_2_6_2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;NOMINMAX;SFML_STATIC;_WINDOWS;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>

@@ -46,6 +46,11 @@ public:
 	Rigidbody() = default;
 	~Rigidbody() = default;
 
+	static const char *g_Name;
+	virtual const char *VGetName() const { return g_Name; }
+
+	virtual bool VInit(Json data) override;
+
 	void AddForce(Vector2 force) {
 		totalForces += force;
 	}

@@ -101,6 +101,15 @@
     <ClInclude Include="..\GameObject\GameObjectFactory.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\Utilities\String.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utilities\ResourceHolder.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Scene\SceneFactory.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Main\Init.cpp">
@@ -166,6 +175,15 @@
     </ClCompile>
     <ClCompile Include="..\GameObject\GameObjectFactory.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utilities\String.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utilities\ResourceHolder.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Scene\SceneFactory.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

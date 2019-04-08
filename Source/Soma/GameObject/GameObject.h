@@ -10,11 +10,14 @@ class Renderer;
 
 class GameObject : public SceneNode
 {
+	friend class GameObjectFactory;
+
 public:
 	typedef std::map<ComponentId, SharedComponentPtr> ComponentMap;
 	typedef std::vector<std::shared_ptr<Renderer>> RendererList;
 
 private:
+	std::string									m_name;
 	GameObjectId								m_id;
 	ComponentMap								m_components;
 	RendererList								m_renderers;
@@ -24,6 +27,8 @@ private:
 public:
 	explicit GameObject(GameObjectId id);
 	~GameObject(void);
+
+	bool Init(Json data);
 
 	void UpdateSelf(sf::Time dt) override;
 	void RenderSelf(sf::RenderTarget& target) const override;

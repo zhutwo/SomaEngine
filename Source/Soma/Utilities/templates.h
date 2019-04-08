@@ -2,6 +2,43 @@
 #include "SomaStd.h"
 #include <new>
 
+class NonCopyable
+{
+public:
+	NonCopyable() = default;
+	NonCopyable(const NonCopyable&) = delete;
+	NonCopyable& operator=(const NonCopyable&) = delete;
+
+	NonCopyable(NonCopyable&&) = default;
+	NonCopyable& operator=(NonCopyable&&) = default;
+};
+
+template <typename T>
+T* GetSingleton()
+{
+	static T inst;
+	return &inst;
+}
+
+template <class TDerived>
+class Singleton
+{
+public:
+	static TDerived& GetInst()
+	{
+		static TDerived inst{ token() };
+		return inst;
+	}
+	//Non-copyable
+	Singleton(const Singleton&) = delete;
+	Singleton& operator =(const Singleton&) = delete;
+protected:
+	//Control construction
+	struct token {};
+	Singleton() {}
+	//friend TDerived;
+};
+
 template <class BaseType, class SubType>
 BaseType* GenericObjectCreationFunction(void) { return new SubType; }
 

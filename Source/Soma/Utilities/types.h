@@ -39,7 +39,10 @@
 
 #include <math.h>
 #include "SFML/System/Vector2.hpp"
+#include "nlohmann/json.hpp"
 //#include "../Debug/debugger.h"
+
+typedef nlohmann::json Json;
 
 typedef unsigned int ComponentId;
 typedef unsigned int GameObjectId;
@@ -52,6 +55,9 @@ typedef std::weak_ptr<Component> WeakComponentPtr;
 
 typedef std::shared_ptr<GameObject> SharedGameObjectPtr;
 typedef std::weak_ptr<GameObject> WeakGameObjectPtr;
+
+typedef std::shared_ptr<Scene> SharedScenePtr;
+typedef std::weak_ptr<Scene> WeakScenePtr;
 
 typedef sf::Vector2f Vector2;
 

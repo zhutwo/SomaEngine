@@ -14,6 +14,11 @@ public:
 	AudioSource() = default;
 	~AudioSource() = default;
 
+	static const char *g_Name;
+	virtual const char *VGetName() const { return g_Name; }
+
+	virtual bool VInit(Json data) override;
+
 	AudioSource(sf::SoundBuffer& defaultClip)
 		: m_sound(defaultClip)
 		, m_defaultClip(defaultClip)

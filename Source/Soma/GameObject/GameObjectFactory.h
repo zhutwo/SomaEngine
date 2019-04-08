@@ -1,13 +1,10 @@
 #pragma once
 
 #include "SomaStd.h"
-#include "tinyxml.h"
-#include "SFML/Graphics/Transformable.hpp"
 
 /*
-GameObject Factory for loading from XML
+GameObject Factory for loading from JSON
 */
-
 class Component;
 
 class GameObjectFactory
@@ -20,13 +17,13 @@ protected:
 public:
 	GameObjectFactory(void);
 
-	SharedGameObjectPtr CreateGameObject(const char* actorResource, TiXmlElement* overrides, const sf::Transformable* initialTransform, const GameObjectId serversActorId);
-	void ModifyGameObject(SharedGameObjectPtr pActor, TiXmlElement* overrides);
+	//SharedGameObjectPtr CreateGameObject(const char* actorResource, TiXmlElement* overrides, const sf::Transformable* initialTransform, const GameObjectId serversActorId);
+	SharedGameObjectPtr CreateGameObject(Json data);
 
 	//protected:
 		// [rez] This function can be overridden by a subclass so you can create game-specific C++ components.  If you do
 		// this, make sure you call the base-class version first.  If it returns NULL, you know it's not an engine component.
-	virtual SharedComponentPtr VCreateComponent(TiXmlElement* pData);
+	virtual SharedComponentPtr VCreateComponent(Json data);
 
 private:
 	GameObjectId GetNextGameObjectId(void) { ++m_lastGameObjectId; return m_lastGameObjectId; }

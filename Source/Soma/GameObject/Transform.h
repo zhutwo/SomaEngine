@@ -12,4 +12,9 @@ public:
 		m_Id = 0;
 	}
 	~TransformComponent() = default;
+
+	static const char *g_Name;
+	virtual const char *VGetName() const { return g_Name; }
+
+	virtual bool VInit(Json data) override;
 };

@@ -8,8 +8,12 @@
 
 class Scene
 {
+	friend class SceneFactory;
+
 protected:
 	SceneNode 			m_Root;
+	std::string			m_Name;
+
 public:
 	Scene();
 	~Scene();

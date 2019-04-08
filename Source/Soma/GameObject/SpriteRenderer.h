@@ -15,10 +15,17 @@ public:
 	SpriteRenderer() = default;
 	~SpriteRenderer() = default;
 
+	static const char *g_Name;
+	virtual const char *VGetName() const { return g_Name; }
+
+	virtual bool VInit(Json data) override;
+
 	SpriteRenderer(std::shared_ptr<sf::Sprite> sprite);
 	void Render(sf::RenderTarget& target) const;
-	void SetSprite(std::shared_ptr<sf::Sprite> sprite);
 	void SetSprite(sf::Sprite sprite);
+	void SetSprite(std::shared_ptr<sf::Sprite> spritePtr);
+	void LoadSpriteFromTexture(sf::Texture texture);
+	void LoadSpriteFromTexture(std::shared_ptr<sf::Texture> texturePtr);
 
 	sf::FloatRect GetBounds(void) const override
 	{

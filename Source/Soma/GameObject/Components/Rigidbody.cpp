@@ -4,10 +4,17 @@
 #include "../Transform.h"
 #include "../../Physics/PhysicsEngine.h"
 
+const char* Rigidbody::g_Name = "Rigidbody";
+
 void Rigidbody::Start()
 {
 	SetAABB();
 	m_engine->AddRigidBody(std::make_shared<Rigidbody>(*this));
+}
+
+bool Rigidbody::VInit(Json data)
+{
+	return false;
 }
 
 void Rigidbody::SetAABB() {
