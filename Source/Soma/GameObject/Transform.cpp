@@ -1,6 +1,10 @@
 #include "Transform.h"
 
-const char* TransformComponent::g_Name = "TransformComponent";
+std::string TransformComponent::g_Name = "TransformComponent";
+
+TransformComponent::TransformComponent()
+{
+}
 
 bool TransformComponent::VInit(Json data)
 {
@@ -19,7 +23,7 @@ bool TransformComponent::VInit(Json data)
 	scale.y = data["localScale"]["y"].get<float>();
 	setScale(scale);
 
-	float rotation = data["localRotation"].get<float>();
+	float rotation = data["rotation"].get<float>();
 	setRotation(rotation);
 
 	return true;

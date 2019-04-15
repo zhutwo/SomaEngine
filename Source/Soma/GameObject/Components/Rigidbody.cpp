@@ -2,29 +2,37 @@
 #include "../Renderer.h"
 #include "../GameObject.h"
 #include "../Transform.h"
+#include "BoxCollider.h"
 #include "../../Physics/PhysicsEngine.h"
 
-const char* Rigidbody::g_Name = "Rigidbody";
+std::string Rigidbody::g_Name = "Rigidbody";
 
 void Rigidbody::Start()
 {
 	SetAABB();
-	m_engine->AddRigidBody(std::make_shared<Rigidbody>(*this));
+	PhysicsEngine::GetSingleton().AddRigidBody(std::make_shared<Rigidbody>(*this));
+}
+
+Rigidbody::Rigidbody()
+{
 }
 
 bool Rigidbody::VInit(Json data)
 {
-	return false;
+	if (!data)
+	{
+		return false;
+	}
+	mass = data["mass"].get<float>();
+	obeysGravity = data["useGravity"].get<float>();
+
+	return true;
 }
 
 void Rigidbody::SetAABB() {
 
-	sf::FloatRect bound;
-	auto p = m_parent.lock()->GetComponent<Renderer>();
-	if (!p.expired())
-	{
-		bound = p.lock()->GetBounds();
-	}
+	auto col = m_parent->GetComponent<BoxCollider>();
+	sf::FloatRect bound = col->GetBounds();
 	aabb.bLeft = Vector2(bound.left, bound.top - bound.height);
 	aabb.tRight = Vector2(bound.left + bound.width, bound.top);
 }
@@ -55,9 +63,9 @@ void Rigidbody::Integrate(sf::Time dt) {
 
 	currentVelocity += acceleration * dt.asSeconds();
 
-	Vector2 temp = Transform().lock()->getPosition();
+	Vector2 temp = m_parent->m_transform->getPosition();
 	temp += currentVelocity * dt.asSeconds();
-	Transform().lock()->setPosition(temp);
+	m_parent->m_transform->setPosition(temp);
 	SetAABB();
 
 	totalForces = Vector2(0.0f, 0.0f);

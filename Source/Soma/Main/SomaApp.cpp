@@ -179,7 +179,8 @@ void SomaApp::MainLoop()
 	return (int)msg.wParam;
 	*/
 	TestGame test;
-	test.BuildScene();
+	test.BuildSceneJSON();
+	//test.testScene.Start();
 
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	m_fixedFrameTime = sf::seconds(1.0f / 60.0f);

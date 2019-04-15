@@ -29,6 +29,12 @@
     <Filter Include="Physics">
       <UniqueIdentifier>{35b0b0a0-d47e-43c4-abd0-7119f73de00b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Scripts">
+      <UniqueIdentifier>{674d84dd-ceea-4dc0-a331-a20d77b6d3a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Components">
+      <UniqueIdentifier>{4d99fffa-99fc-418f-8013-c22566d28f1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Main\Init.h">
@@ -68,47 +74,50 @@
     <ClInclude Include="..\GameObject\GameObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\GameObject\Component.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GameObject\Transform.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GameObject\SpriteRenderer.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GameObject\Renderer.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GameObject\Components\AudioSource.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GameObject\Components\Collider.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GameObject\Components\BoxCollider.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GameObject\Components\Rigidbody.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="..\Physics\PhysicsEngine.h">
       <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GameObject\Components\Controller.h">
-      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="..\GameObject\GameObjectFactory.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\String.h">
-      <Filter>Utilities</Filter>
+    <ClInclude Include="..\Scene\SceneFactory.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Component.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Components\PlayerController.h">
+      <Filter>GameObject\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Components\AudioSource.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Components\BoxCollider.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Components\Collider.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Renderer.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Components\Rigidbody.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\SpriteRenderer.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Transform.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Scripts\TargetScript.h">
+      <Filter>GameObject\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\Scripts\BulletScript.h">
+      <Filter>GameObject\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="..\Utilities\ResourceHolder.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Scene\SceneFactory.h">
-      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,47 +152,50 @@
     <ClCompile Include="..\GameObject\Component.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\GameObject\Transform.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GameObject\SpriteRenderer.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GameObject\Renderer.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GameObject\Components\AudioSource.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GameObject\Components\Collider.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GameObject\Components\BoxCollider.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GameObject\Components\Rigidbody.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="..\Physics\PhysicsEngine.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
     <ClCompile Include="..\TestGame\TestGame.cpp">
       <Filter>TestGame</Filter>
     </ClCompile>
-    <ClCompile Include="..\GameObject\Components\Controller.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="..\GameObject\GameObjectFactory.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\String.cpp">
-      <Filter>Utilities</Filter>
+    <ClCompile Include="..\Scene\SceneFactory.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Components\PlayerController.cpp">
+      <Filter>GameObject\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Components\AudioSource.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Components\BoxCollider.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Components\Collider.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Renderer.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Components\Rigidbody.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\SpriteRenderer.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Transform.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Scripts\TargetScript.cpp">
+      <Filter>GameObject\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\Scripts\BulletScript.cpp">
+      <Filter>GameObject\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="..\Utilities\ResourceHolder.cpp">
       <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Scene\SceneFactory.cpp">
-      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

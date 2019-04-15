@@ -37,19 +37,21 @@ public:
 
 	Vector2 totalForces;
 	
-	PhysicsEngine* m_engine;
+	//PhysicsEngine* m_engine;
 
 	AABB aabb;
 
 public:
 	
-	Rigidbody() = default;
+	Rigidbody();
 	~Rigidbody() = default;
 
-	static const char *g_Name;
-	virtual const char *VGetName() const { return g_Name; }
+	static std::string g_Name;
+	virtual std::string VGetName() const override { return g_Name; }
 
 	virtual bool VInit(Json data) override;
+
+	virtual void Start() override;
 
 	void AddForce(Vector2 force) {
 		totalForces += force;
@@ -67,8 +69,6 @@ public:
 	}
 	
 	void SetAABB();
-
-	void Start();
 
 	void Integrate(sf::Time dt);
 };

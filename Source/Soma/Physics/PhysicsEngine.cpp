@@ -1,29 +1,30 @@
 #include "PhysicsEngine.h"
+#include "../GameObject/GameObject.h"
 #include "../GameObject/Components/Rigidbody.h"
 #include "../GameObject/Transform.h"
 
 void PhysicsEngine::IntegrateBodies(sf::Time dt) {
 	for (int i = 0; i < rigidBodies.size(); i++)
 	{
-		rigidBodies[i].lock()->Integrate(dt);
+		rigidBodies[i]->Integrate(dt);
 	}
 }
-/*
+
 void PhysicsEngine::CheckCollisions() {
 	for (int i = 0; i < rigidBodies.size(); i++)
 	{
 		for (int j = i; j < rigidBodies.size(); j++)
 		{
-			auto bodyA = rigidBodies[i].lock();
-			auto bodyB = rigidBodies[j].lock();
+			auto bodyA = rigidBodies[i];
+			auto bodyB = rigidBodies[j];
 			if (bodyA != bodyB && bodyA->IsActive() && bodyB->IsActive())
 			{
-				CollisionPair pair;
+				std::shared_ptr<CollisionPair> pair = std::make_shared<CollisionPair>();
 				CollisionInfo colInfo;
-				pair.rigidBodyA = WeakRigidbodyPtr(bodyA);
-				pair.rigidBodyB = WeakRigidbodyPtr(bodyB);
+				pair->rigidBodyA = RigidbodyPtr(bodyA);
+				pair->rigidBodyB = RigidbodyPtr(bodyB);
 
-				Vector2 distance = bodyB->Transform().lock()->getPosition() - bodyA->Transform().lock()->getPosition();
+				Vector2 distance = bodyB->m_parent->m_transform->getPosition() - bodyA->m_parent->m_transform->getPosition();
 
 				Vector2 halfSizeA = (bodyA->aabb.tRight - bodyA->aabb.bLeft) / 2.0f;
 				Vector2 halfSizeB = (bodyB->aabb.tRight - bodyB->aabb.bLeft) / 2.0f;
@@ -37,7 +38,7 @@ void PhysicsEngine::CheckCollisions() {
 				{
 					//Debug.Log("Collided!!!");
 
-					if (&found->first == &pair)
+					if (found->first == pair)
 					{
 						collisions.erase(found);
 					}
@@ -72,7 +73,7 @@ void PhysicsEngine::CheckCollisions() {
 					}
 					collisions.insert(std::make_pair(pair, colInfo));
 				}
-				else if (&found->first == &pair)
+				else if (found->first == pair)
 				{
 					collisions.erase(found);
 				}
@@ -83,11 +84,11 @@ void PhysicsEngine::CheckCollisions() {
 }
 
 void PhysicsEngine::ResolveCollisions() {
-	for (std::map<CollisionPair, CollisionInfo>::iterator it = collisions.begin(); it != collisions.end(); ++it)
+	for (std::map<std::shared_ptr<CollisionPair>, CollisionInfo>::iterator it = collisions.begin(); it != collisions.end(); ++it)
 	{
-		CollisionPair pair = it->first;
-		float minBounce = std::min(pair.rigidBodyA.lock()->bounciness, pair.rigidBodyB.lock()->bounciness);
-		float velAlongNormal = Vec2Dot(pair.rigidBodyB.lock()->currentVelocity - pair.rigidBodyA.lock()->currentVelocity, collisions[pair].collisionNormal);
+		std::shared_ptr<CollisionPair> pair = it->first;
+		float minBounce = std::min(pair->rigidBodyA->bounciness, pair->rigidBodyB->bounciness);
+		float velAlongNormal = Vec2Dot(pair->rigidBodyB->currentVelocity - pair->rigidBodyA->currentVelocity, collisions[pair].collisionNormal);
 
 		if (velAlongNormal > 0.0f)
 		{
@@ -96,23 +97,23 @@ void PhysicsEngine::ResolveCollisions() {
 
 		float j = -(1.0f + minBounce) * velAlongNormal;
 		float invMassA, invMassB;
-		if (pair.rigidBodyA.lock()->mass == 0.0f)
+		if (pair->rigidBodyA->mass == 0.0f)
 			invMassA = 0.0f;
 		else
-			invMassA = 1.0f / pair.rigidBodyA.lock()->mass;
+			invMassA = 1.0f / pair->rigidBodyA->mass;
 
-		if (pair.rigidBodyB.lock()->mass == 0.0f)
+		if (pair->rigidBodyB->mass == 0.0f)
 			invMassB = 0.0f;
 		else
-			invMassB = 1.0f / pair.rigidBodyB.lock()->mass;
+			invMassB = 1.0f / pair->rigidBodyB->mass;
 
 		j /= invMassA + invMassB;
 
 		Vector2 impulse = j * collisions[pair].collisionNormal;
 
 		// ... update velocities
-		pair.rigidBodyA.lock()->currentVelocity -= impulse * invMassA;
-		pair.rigidBodyB.lock()->currentVelocity += impulse * invMassB;
+		pair->rigidBodyA->currentVelocity -= impulse * invMassA;
+		pair->rigidBodyB->currentVelocity += impulse * invMassB;
 
 		if (abs(collisions[pair].penetration) > 0.01f)
 		{
@@ -121,28 +122,27 @@ void PhysicsEngine::ResolveCollisions() {
 	}
 }
 
-void PhysicsEngine::PositionalCorrection(CollisionPair c) {
+void PhysicsEngine::PositionalCorrection(std::shared_ptr<CollisionPair> c) {
 	const float percent = 0.2f;
 
 	float invMassA, invMassB;
-	if (c.rigidBodyA.lock()->mass == 0.0f)
+	if (c->rigidBodyA->mass == 0.0f)
 		invMassA = 0.0f;
 	else
-		invMassA = 1.0f / c.rigidBodyA.lock()->mass;
+		invMassA = 1.0f / c->rigidBodyA->mass;
 
-	if (c.rigidBodyB.lock()->mass == 0.0f)
+	if (c->rigidBodyB->mass == 0.0f)
 		invMassB = 0.0f;
 	else
-		invMassB = 1.0f / c.rigidBodyB.lock()->mass;
+		invMassB = 1.0f / c->rigidBodyB->mass;
 
 	Vector2 correction = ((collisions[c].penetration / (invMassA + invMassB)) * percent) * -collisions[c].collisionNormal;
 
-	Vector2 temp = c.rigidBodyA.lock()->Transform().lock()->getPosition();
+	Vector2 temp = c->rigidBodyA->m_parent->m_transform->getPosition();
 	temp -= invMassA * correction;
-	c.rigidBodyA.lock()->Transform().lock()->setPosition(temp);
+	c->rigidBodyA->m_parent->m_transform->setPosition(temp);
 
-	temp = c.rigidBodyA.lock()->Transform().lock()->getPosition();
+	temp = c->rigidBodyA->m_parent->m_transform->getPosition();
 	temp += invMassB * correction;
-	c.rigidBodyA.lock()->Transform().lock()->setPosition(temp);
+	c->rigidBodyA->m_parent->m_transform->setPosition(temp);
 }
-*/

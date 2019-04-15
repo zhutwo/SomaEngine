@@ -11,11 +11,11 @@ GameObjectFactory::GameObjectFactory(void)
 {
 	m_lastGameObjectId = INVALID_GAMEOBJECT_ID;
 
-	m_componentFactory.Register<TransformComponent>(Component::GetIdFromName(TransformComponent::g_Name));
-	m_componentFactory.Register<SpriteRenderer>(Component::GetIdFromName(SpriteRenderer::g_Name));
-	m_componentFactory.Register<AudioSource>(Component::GetIdFromName(AudioSource::g_Name));
-	m_componentFactory.Register<Rigidbody>(Component::GetIdFromName(Rigidbody::g_Name));
-	m_componentFactory.Register<BoxCollider>(Component::GetIdFromName(BoxCollider::g_Name));
+	//m_componentFactory.Register<TransformComponent>(Component::GetIdFromName(TransformComponent::g_Name));
+	//m_componentFactory.Register<SpriteRenderer>(Component::GetIdFromName(SpriteRenderer::g_Name));
+	//m_componentFactory.Register<AudioSource>(Component::GetIdFromName(AudioSource::g_Name));
+	//m_componentFactory.Register<Rigidbody>(Component::GetIdFromName(Rigidbody::g_Name));
+	//m_componentFactory.Register<BoxCollider>(Component::GetIdFromName(BoxCollider::g_Name));
 }
 
 SharedGameObjectPtr GameObjectFactory::CreateGameObject(Json data)
@@ -52,7 +52,7 @@ SharedGameObjectPtr GameObjectFactory::CreateGameObject(Json data)
 	for (auto &childData : childList)
 	{
 		auto pChild = CreateGameObject(childData);
-		pGameObject->AttachChild(std::static_pointer_cast<SceneNode>(pChild));
+		pGameObject->AttachChild(pChild);
 	}
 
 	return pGameObject;
@@ -60,8 +60,8 @@ SharedGameObjectPtr GameObjectFactory::CreateGameObject(Json data)
 
 SharedComponentPtr GameObjectFactory::VCreateComponent(Json data)
 {
-	const char* name = data["name"].get<std::string>().c_str();
-	SharedComponentPtr pComponent = std::make_shared<Component>(m_componentFactory.Create(Component::GetIdFromName(name)));
+	std::string name = data["name"].get<std::string>();
+	SharedComponentPtr pComponent(m_componentFactory.Create(Component::GetIdFromName(name)));
 
 	// initialize the component if we found one
 	if (pComponent)

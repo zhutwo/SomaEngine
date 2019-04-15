@@ -6,17 +6,29 @@
 
 class Rigidbody;
 
-class PhysicsEngine {
+class PhysicsEngine : private NonCopyable {
+
+private:
+	PhysicsEngine() = default;
 
 public:
-	typedef std::weak_ptr<Rigidbody> WeakRigidbodyPtr;
+	PhysicsEngine(const PhysicsEngine&) = delete;
+	PhysicsEngine& operator=(const PhysicsEngine&) = delete;
+
+	static PhysicsEngine& GetSingleton()
+	{
+		static PhysicsEngine inst;
+		return inst;
+	}
+
+	typedef std::shared_ptr<Rigidbody> RigidbodyPtr;
 
 	float groundedTol = 0.1f;
 	
 	struct CollisionPair {
 	public:
-		WeakRigidbodyPtr rigidBodyA;
-		WeakRigidbodyPtr rigidBodyB;
+		RigidbodyPtr rigidBodyA;
+		RigidbodyPtr rigidBodyB;
 	};
 
 	struct CollisionInfo {
@@ -27,17 +39,17 @@ public:
 
 	struct CollisionEvent {
 	public:
-		CollisionPair collisionPair;
+		std::shared_ptr<CollisionPair> collisionPair;
 		CollisionInfo collisionInfo;
 	};
 	
-	std::map<CollisionPair, CollisionInfo> collisions;
-	std::vector<WeakRigidbodyPtr> rigidBodies;
+	std::map<std::shared_ptr<CollisionPair>, CollisionInfo> collisions;
+	std::vector<RigidbodyPtr> rigidBodies;
 
 public:
 		
 	void AddRigidBody(std::shared_ptr<Rigidbody> rigidBody) {
-		rigidBodies.push_back(WeakRigidbodyPtr(rigidBody));
+		rigidBodies.push_back(RigidbodyPtr(rigidBody));
 	}
 
 	void IntegrateBodies(sf::Time dt);
@@ -60,16 +72,16 @@ public:
 		return false;
 	}
 	*/
-	//void CheckCollisions();
+	void CheckCollisions();
 
-	//void ResolveCollisions();
+	void ResolveCollisions();
 
-	//void PositionalCorrection(CollisionPair c);
+	void PositionalCorrection(std::shared_ptr<CollisionPair> c);
 
 	void Update(sf::Time dt) {
 		// .... 
 		IntegrateBodies(dt);
-		//CheckCollisions();
-		//ResolveCollisions();
+		CheckCollisions();
+		ResolveCollisions();
 	}
 };

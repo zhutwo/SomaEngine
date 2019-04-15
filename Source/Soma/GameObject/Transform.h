@@ -7,14 +7,11 @@
 class TransformComponent : public Component, public sf::Transformable
 {
 public:
-	TransformComponent()
-	{
-		m_Id = 0;
-	}
+	TransformComponent();
 	~TransformComponent() = default;
 
-	static const char *g_Name;
-	virtual const char *VGetName() const { return g_Name; }
+	static std::string g_Name;
+	virtual std::string VGetName() const override { return g_Name; }
 
 	virtual bool VInit(Json data) override;
 };

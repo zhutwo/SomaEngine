@@ -1,5 +1,7 @@
 #include "SceneFactory.h"
 #include "Scene.h"
+#include "SceneNode.h"
+#include "../GameObject/GameObject.h"
 
 SceneFactory::SceneFactory(void)
 {

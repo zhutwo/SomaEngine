@@ -13,7 +13,7 @@ Scene::~Scene()
 
 bool Scene::AttachChild(SceneNodePtr child)
 {
-	return m_Root.AttachChild(std::move(child));
+	return m_Root.AttachChild(child);
 }
 
 SceneNodePtr Scene::DetachChild(const SceneNode& node)
@@ -29,4 +29,9 @@ void Scene::Update(sf::Time dt)
 void Scene::Render(sf::RenderTarget& target) const
 {
 	m_Root.RenderChildren(target);
+}
+
+void Scene::Start()
+{
+	m_Root.Start();
 }

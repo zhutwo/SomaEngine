@@ -23,4 +23,5 @@ public:
 
 	void				Update(sf::Time dt);
 	void				Render(sf::RenderTarget& target) const;
+	void				Start();
 };

@@ -11,13 +11,7 @@ Component::~Component()
 {
 
 }
-void Component::SetParent(std::shared_ptr<GameObject> parent)
+void Component::SetParent(SharedGameObjectPtr parent)
 {
-	m_parent = std::weak_ptr<GameObject>(parent);
-}
-
-std::weak_ptr<TransformComponent> Component::Transform(void) const
-{
-	auto p = m_parent.lock();
-	return p->GetTransform();
+	m_parent = parent;
 }

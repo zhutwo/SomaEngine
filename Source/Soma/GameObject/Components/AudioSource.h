@@ -7,33 +7,75 @@
 class AudioSource : public Component
 {
 private:
-	sf::Sound				m_sound;
-	sf::Music				m_music;
-	sf::SoundBuffer&		m_defaultClip;
+	sf::Sound								m_sound;
+	sf::Music								m_music;
+	std::shared_ptr<sf::SoundBuffer>		m_defaultClip;
+	bool									m_isMusic;
+	bool									m_autoplay;
+	bool									m_loop;
+	float									m_volume;
+	float									m_pitch;
+
 public:
-	AudioSource() = default;
+
+	AudioSource();
 	~AudioSource() = default;
 
-	static const char *g_Name;
-	virtual const char *VGetName() const { return g_Name; }
+	static std::string g_Name;
+	virtual std::string VGetName() const override { return g_Name; }
 
 	virtual bool VInit(Json data) override;
 
-	AudioSource(sf::SoundBuffer& defaultClip)
-		: m_sound(defaultClip)
+	virtual void Start() override;
+
+	AudioSource(std::shared_ptr<sf::SoundBuffer> defaultClip)
+		: m_sound(*defaultClip)
 		, m_defaultClip(defaultClip)
 	{}
 
-	void Play(bool repeat = false)
+	void Play() 
 	{
-		m_sound.setBuffer(m_defaultClip);
+		if (m_isMusic)
+		{
+			m_music.play();
+		}
+		else
+		{
+			m_sound.play();
+		}
+	}
+
+	void SetLoop(bool loop)
+	{
+		m_loop = loop;
+		m_sound.setLoop(loop);
+		m_music.setLoop(loop);
+	}
+
+	void SetVolume(float volume)
+	{
+		m_volume = volume;
+		m_sound.setVolume(volume);
+		m_music.setVolume(volume);
+	}
+
+	void SetPitch(float pitch)
+	{
+		m_pitch = pitch;
+		m_sound.setPitch(pitch);
+		m_music.setPitch(pitch);
+	}
+
+	void Play(bool repeat)
+	{
+		m_sound.setBuffer(*m_defaultClip);
 		m_sound.setLoop(repeat);
 		m_sound.play();
 	}
 
-	void PlayClip(sf::SoundBuffer& clip, bool repeat = false)
+	void PlayClip(std::shared_ptr<sf::SoundBuffer> clip, bool repeat = false)
 	{
-		m_sound.setBuffer(clip);
+		m_sound.setBuffer(*clip);
 		m_sound.setLoop(repeat);
 		m_sound.play();
 	}
@@ -48,19 +90,9 @@ public:
 		m_sound.stop();
 	}
 
-	void SetDefaultClip(sf::SoundBuffer& clip)
+	void SetDefaultClip(std::shared_ptr<sf::SoundBuffer> clip)
 	{
 		m_defaultClip = clip;
-	}
-
-	void SetVolume(float volume)
-	{
-		m_sound.setVolume(volume);
-	}
-
-	void SetPitch(float pitch)
-	{
-		m_sound.setPitch(pitch);
 	}
 
 	void PlayMusic(bool repeat = false)

@@ -12,13 +12,15 @@ private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
-	SpriteRenderer() = default;
+	SpriteRenderer();
 	~SpriteRenderer() = default;
 
-	static const char *g_Name;
-	virtual const char *VGetName() const { return g_Name; }
+	static std::string g_Name;
+	virtual std::string VGetName() const override { return g_Name; }
 
 	virtual bool VInit(Json data) override;
+
+	virtual void Update(sf::Time dt) override;
 
 	SpriteRenderer(std::shared_ptr<sf::Sprite> sprite);
 	void Render(sf::RenderTarget& target) const;

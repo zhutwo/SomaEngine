@@ -1,7 +1,9 @@
 #include "SpriteRenderer.h"
+#include "Transform.h"
+#include "GameObject.h"
 #include "../Utilities/ResourceHolder.h"
 
-const char* SpriteRenderer::g_Name = "SpriteRenderer";
+std::string SpriteRenderer::g_Name = "SpriteRenderer";
 
 bool SpriteRenderer::VInit(Json data)
 {
@@ -13,6 +15,17 @@ bool SpriteRenderer::VInit(Json data)
 	m_sprite = ResourceHolder::GetSingleton().GetSprite(spriteName);
 
 	return true;
+}
+
+void SpriteRenderer::Update(sf::Time dt)
+{
+	//m_sprite->setPosition(m_parent->m_transform->getPosition());
+	//m_sprite->setRotation(m_parent->m_transform->getRotation());
+	//m_sprite->setScale(m_parent->m_transform->getScale());
+}
+
+SpriteRenderer::SpriteRenderer()
+{
 }
 
 SpriteRenderer::SpriteRenderer(std::shared_ptr<sf::Sprite> sprite)

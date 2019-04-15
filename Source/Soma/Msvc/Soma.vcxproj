@@ -26,11 +26,13 @@
     <ClInclude Include="..\GameObject\Components\AudioSource.h" />
     <ClInclude Include="..\GameObject\Components\BoxCollider.h" />
     <ClInclude Include="..\GameObject\Components\Collider.h" />
-    <ClInclude Include="..\GameObject\Components\Controller.h" />
+    <ClInclude Include="..\GameObject\Components\PlayerController.h" />
     <ClInclude Include="..\GameObject\Components\Rigidbody.h" />
     <ClInclude Include="..\GameObject\GameObject.h" />
     <ClInclude Include="..\GameObject\GameObjectFactory.h" />
     <ClInclude Include="..\GameObject\Renderer.h" />
+    <ClInclude Include="..\GameObject\Scripts\BulletScript.h" />
+    <ClInclude Include="..\GameObject\Scripts\TargetScript.h" />
     <ClInclude Include="..\GameObject\SpriteRenderer.h" />
     <ClInclude Include="..\GameObject\Transform.h" />
     <ClInclude Include="..\Physics\PhysicsEngine.h" />
@@ -42,7 +44,6 @@
     <ClInclude Include="..\Main\SomaAppStd.h" />
     <ClInclude Include="..\Main\Init.h" />
     <ClInclude Include="..\Utilities\ResourceHolder.h" />
-    <ClInclude Include="..\Utilities\String.h" />
     <ClInclude Include="..\Utilities\templates.h" />
     <ClInclude Include="..\Utilities\types.h" />
     <ClInclude Include="SomaStd.h" />
@@ -54,11 +55,13 @@
     <ClCompile Include="..\GameObject\Components\AudioSource.cpp" />
     <ClCompile Include="..\GameObject\Components\BoxCollider.cpp" />
     <ClCompile Include="..\GameObject\Components\Collider.cpp" />
-    <ClCompile Include="..\GameObject\Components\Controller.cpp" />
+    <ClCompile Include="..\GameObject\Components\PlayerController.cpp" />
     <ClCompile Include="..\GameObject\Components\Rigidbody.cpp" />
     <ClCompile Include="..\GameObject\GameObject.cpp" />
     <ClCompile Include="..\GameObject\GameObjectFactory.cpp" />
     <ClCompile Include="..\GameObject\Renderer.cpp" />
+    <ClCompile Include="..\GameObject\Scripts\BulletScript.cpp" />
+    <ClCompile Include="..\GameObject\Scripts\TargetScript.cpp" />
     <ClCompile Include="..\GameObject\SpriteRenderer.cpp" />
     <ClCompile Include="..\GameObject\Transform.cpp" />
     <ClCompile Include="..\Physics\PhysicsEngine.cpp" />
@@ -71,7 +74,6 @@
     <ClCompile Include="..\Main\Main.cpp" />
     <ClCompile Include="..\TestGame\TestGame.cpp" />
     <ClCompile Include="..\Utilities\ResourceHolder.cpp" />
-    <ClCompile Include="..\Utilities\String.cpp" />
     <ClCompile Include="SomaStd.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -178,7 +180,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)..\3rdParty\SFML-2.5.1\lib;$(ProjectDir)..\3rdParty\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;winmm.lib;gdi32.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-audio-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;gdi32.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-audio-s-d.lib;sfml-system-s-d.lib;sfml-system-s.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>

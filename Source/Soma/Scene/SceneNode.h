@@ -5,11 +5,6 @@
 
 #include "SomaStd.h"
 
-class SceneNode;
-
-typedef std::shared_ptr<SceneNode> SceneNodePtr;
-typedef std::vector<SceneNodePtr> SceneNodeList;
-
 /*
 SceneNode
 
@@ -39,4 +34,6 @@ public:
 	void				Render(sf::RenderTarget& target) const;
 	void				RenderChildren(sf::RenderTarget& target) const;
 	virtual void		RenderSelf(sf::RenderTarget& target) const {}
+
+	virtual void		Start();
 };

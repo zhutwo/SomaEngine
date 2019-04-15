@@ -42,6 +42,11 @@
 #include "nlohmann/json.hpp"
 //#include "../Debug/debugger.h"
 
+class GameObject;
+class Component;
+class Scene;
+class SceneNode;
+
 typedef nlohmann::json Json;
 
 typedef unsigned int ComponentId;
@@ -58,6 +63,9 @@ typedef std::weak_ptr<GameObject> WeakGameObjectPtr;
 
 typedef std::shared_ptr<Scene> SharedScenePtr;
 typedef std::weak_ptr<Scene> WeakScenePtr;
+
+typedef std::shared_ptr<SceneNode> SceneNodePtr;
+typedef std::vector<SceneNodePtr> SceneNodeList;
 
 typedef sf::Vector2f Vector2;
 
@@ -110,7 +118,7 @@ public:
 //---------------------------------------------------------------------------------------------------------------------
 // This class represents a single point in 2D space
 //---------------------------------------------------------------------------------------------------------------------
-
+/*
 class Point
 {
 public:
@@ -241,3 +249,4 @@ public:
 	}
 	void MoveTo(const Point& point) { MoveTo(point.x, point.y); }
 };
+*/

@@ -56,3 +56,11 @@ void SceneNode::RenderChildren(sf::RenderTarget& target) const
 		child->Render(target);
 	}
 }
+
+void SceneNode::Start()
+{
+	for (const SceneNodePtr& child : m_Children)
+	{
+		child->Start();
+	}
+}

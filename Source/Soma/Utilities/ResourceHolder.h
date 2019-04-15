@@ -2,12 +2,14 @@
 
 #include "SomaStd.h"
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 
 class ResourceHolder : private NonCopyable
 {
 private:
 	std::map<std::string, std::shared_ptr<sf::Texture>> m_textures;
 	std::map<std::string, std::shared_ptr<sf::Sprite>> m_sprites;
+	std::map < std::string, std::shared_ptr<sf::SoundBuffer>> m_soundBuffers;
 	ResourceHolder() = default;
 
 public:
@@ -24,7 +26,11 @@ public:
 
 	bool LoadTexture(std::string name, std::string path);
 	bool LoadSprite(std::string name, std::string textureName);
+	bool LoadSoundBuffer(std::string name, std::string path);
 
 	std::shared_ptr<sf::Texture> GetTexture(std::string name);
 	std::shared_ptr<sf::Sprite> GetSprite(std::string name);
+	std::shared_ptr<sf::SoundBuffer> GetSoundBuffer(std::string name);
+
+	void LoadResources();
 };

@@ -3,11 +3,16 @@
 #include "Transform.h"
 #include "Renderer.h"
 
+GameObject::GameObject()
+{
+	m_name = "NewGameObject";
+}
+
 GameObject::GameObject(GameObjectId id)
 	: m_id(id)
 	, m_name("NewGameObject")
-	, m_transform(new TransformComponent)
-	, m_localTransform(new TransformComponent)
+	, m_transform(new TransformComponent())
+	, m_localTransform(new TransformComponent())
 {}
 
 GameObject::~GameObject()
@@ -24,6 +29,7 @@ bool GameObject::Init(Json data)
 	}
 
 	m_name = data["name"].get<std::string>();
+	m_tag = data["tag"].get<std::string>();
 
 	Json transformData = data["transform"];
 	m_localTransform->VInit(transformData);
@@ -56,6 +62,28 @@ void GameObject::RenderSelf(sf::RenderTarget& target) const
 	}
 }
 
+void GameObject::Start()
+{
+	for (ComponentMap::iterator it = m_components.begin(); it != m_components.end(); ++it)
+	{
+		it->second->Start();
+	}
+	SceneNode::Start();
+
+}
+/*
+TransformComponent* GameObject::GetTransform(void)
+{
+	auto p = *m_transform;
+	return &p;
+}
+
+TransformComponent * GameObject::GetLocalTransform(void)
+{
+	auto p = *m_localTransform;
+	return &p;
+}
+*/
 void GameObject::AddComponent(SharedComponentPtr component)
 {
 	m_components.insert(std::make_pair(component->GetId(), component));
