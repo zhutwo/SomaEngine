@@ -7,21 +7,10 @@ std::string SpriteRenderer::g_Name = "SpriteRenderer";
 
 bool SpriteRenderer::VInit(Json data)
 {
-	if (!data)
-	{
-		return false;
-	}
 	std::string spriteName = data["sprite"].get<std::string>();
 	m_sprite = ResourceHolder::GetSingleton().GetSprite(spriteName);
 
 	return true;
-}
-
-void SpriteRenderer::Update(sf::Time dt)
-{
-	//m_sprite->setPosition(m_parent->m_transform->getPosition());
-	//m_sprite->setRotation(m_parent->m_transform->getRotation());
-	//m_sprite->setScale(m_parent->m_transform->getScale());
 }
 
 SpriteRenderer::SpriteRenderer()
@@ -38,8 +27,11 @@ void SpriteRenderer::draw(sf::RenderTarget& target, sf::RenderStates states) con
 	target.draw(*m_sprite, states);
 }
 
-void SpriteRenderer::Render(sf::RenderTarget& target) const
+void SpriteRenderer::Render(sf::RenderTarget& target)
 {
+	m_sprite->setPosition(GetLocalTransform()->getPosition());
+	m_sprite->setRotation(GetLocalTransform()->getRotation());
+	m_sprite->setScale(GetLocalTransform()->getScale());
 	draw(target, sf::RenderStates::Default);
 }
 

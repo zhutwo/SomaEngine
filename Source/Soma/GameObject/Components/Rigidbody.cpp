@@ -10,7 +10,7 @@ std::string Rigidbody::g_Name = "Rigidbody";
 void Rigidbody::Start()
 {
 	SetAABB();
-	PhysicsEngine::GetSingleton().AddRigidBody(std::make_shared<Rigidbody>(*this));
+	//PhysicsEngine::GetSingleton().AddRigidBody(std::make_shared<Rigidbody>(*this));
 }
 
 Rigidbody::Rigidbody()
@@ -19,12 +19,8 @@ Rigidbody::Rigidbody()
 
 bool Rigidbody::VInit(Json data)
 {
-	if (!data)
-	{
-		return false;
-	}
 	mass = data["mass"].get<float>();
-	obeysGravity = data["useGravity"].get<float>();
+	obeysGravity = data["useGravity"].get<bool>();
 
 	return true;
 }
@@ -38,6 +34,7 @@ void Rigidbody::SetAABB() {
 }
 
 void Rigidbody::Integrate(sf::Time dt) {
+
 	Vector2 acceleration;
 
 	if (obeysGravity && !IsGrounded())
@@ -63,10 +60,11 @@ void Rigidbody::Integrate(sf::Time dt) {
 
 	currentVelocity += acceleration * dt.asSeconds();
 
-	Vector2 temp = m_parent->m_transform->getPosition();
+	Vector2 temp = GetLocalTransform()->getPosition();
 	temp += currentVelocity * dt.asSeconds();
-	m_parent->m_transform->setPosition(temp);
-	SetAABB();
+	GetLocalTransform()->setPosition(temp);
+
+	//SetAABB();
 
 	totalForces = Vector2(0.0f, 0.0f);
 }

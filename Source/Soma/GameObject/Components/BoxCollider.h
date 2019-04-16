@@ -6,7 +6,7 @@
 
 class BoxCollider : public Collider
 {
-private:
+public:
 	sf::FloatRect			m_bounds;
 	Vector2					m_size;
 	Vector2					m_center;
@@ -20,5 +20,8 @@ public:
 
 	virtual bool VInit(Json data) override;
 
-	sf::FloatRect GetBounds();
+	virtual void Update(sf::Time dt) override {}
+	virtual void Start() override {}
+
+	sf::FloatRect& GetBounds();
 };

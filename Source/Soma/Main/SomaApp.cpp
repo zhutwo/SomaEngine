@@ -1,5 +1,6 @@
-
 #include "SomaApp.h"
+#include "../Utilities/ResourceHolder.h"
+#include "../Physics/PhysicsEngine.h"
 #include <future>
 
 #define MEGABYTE 1048576
@@ -75,7 +76,7 @@ bool SomaApp::InitInstance(HINSTANCE hInstance, LPWSTR lpCmdLine, HWND hWnd, int
 	m_renderWindow = new sf::RenderWindow(m_hWnd);
 
 	auto checkFuture = std::async(std::launch::async,&SomaApp::CheckResources,this);
-	//ShowSplash();
+	ShowSplash();
 	
 	bool passed = checkFuture.get();
 	if (!passed)
@@ -180,7 +181,7 @@ void SomaApp::MainLoop()
 	*/
 	TestGame test;
 	test.BuildSceneJSON();
-	//test.testScene.Start();
+	test.Start();
 
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	m_fixedFrameTime = sf::seconds(1.0f / 60.0f);
@@ -207,19 +208,15 @@ void SomaApp::MainLoop()
 				{
 					timeSinceLastUpdate -= m_fixedFrameTime;
 
-					test.testScene.Update(m_fixedFrameTime);
-
 					m_renderWindow->clear();
-					test.testScene.Render(*m_renderWindow);
+					test.MainLoop(m_fixedFrameTime, *m_renderWindow);
 					m_renderWindow->display();
 				}
 			}
 			else
 			{
-				test.testScene.Update(dt);
-
 				m_renderWindow->clear();
-				test.testScene.Render(*m_renderWindow);
+				test.MainLoop(m_fixedFrameTime, *m_renderWindow);
 				m_renderWindow->display();
 			}
 

@@ -49,7 +49,7 @@ public:
 public:
 		
 	void AddRigidBody(std::shared_ptr<Rigidbody> rigidBody) {
-		rigidBodies.push_back(RigidbodyPtr(rigidBody));
+		rigidBodies.push_back(rigidBody);
 	}
 
 	void IntegrateBodies(sf::Time dt);
@@ -79,9 +79,9 @@ public:
 	void PositionalCorrection(std::shared_ptr<CollisionPair> c);
 
 	void Update(sf::Time dt) {
-		// .... 
+
 		IntegrateBodies(dt);
-		CheckCollisions();
-		ResolveCollisions();
+		//CheckCollisions();
+		//ResolveCollisions();
 	}
 };

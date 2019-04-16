@@ -34,8 +34,8 @@ public:
 	virtual bool VInit(Json data) = 0;
 	virtual void VPostInit(void) { }
 	virtual bool IsRenderer(void) const { return false; }
-	virtual void Update(sf::Time dt) {}
-	virtual void Start() {}
+	virtual void Update(sf::Time dt) = 0;
+	virtual void Start() = 0;
 
 	// This function should be overridden by the interface class.
 	virtual ComponentId VGetId(void) const { return GetIdFromName(VGetName()); }
@@ -48,4 +48,7 @@ public:
 	void SetActive(bool active) { m_isActive = active; }
 	bool IsActive(void) const { return m_isActive; }
 	void SetParent(SharedGameObjectPtr parent);
+
+	TransformPtr GetTransform(void);
+	TransformPtr GetLocalTransform(void);
 };

@@ -52,6 +52,7 @@ public:
 	virtual bool VInit(Json data) override;
 
 	virtual void Start() override;
+	virtual void Update(sf::Time dt) override {}
 
 	void AddForce(Vector2 force) {
 		totalForces += force;

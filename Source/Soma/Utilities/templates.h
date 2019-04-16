@@ -2,6 +2,26 @@
 #include "SomaStd.h"
 #include <new>
 
+class Helper
+{
+public:
+	static void Print(std::string msg)
+	{
+		std::wstring wstr(msg.begin(), msg.end());
+		MessageBox(NULL,
+			wstr.c_str(),
+			_T("Soma Debug"),
+			NULL);
+	}
+	static void Ping()
+	{
+		MessageBox(NULL,
+			_T("Ping!"),
+			_T("Soma Debug"),
+			NULL);
+	}
+};
+
 class NonCopyable
 {
 public:

@@ -4,15 +4,11 @@ std::string BoxCollider::g_Name = "BoxCollider";
 
 BoxCollider::BoxCollider()
 {
+
 }
 
 bool BoxCollider::VInit(Json data)
 {
-	if (!data)
-	{
-		return false;
-	}
-
 	m_isTrigger = data["isTrigger"].get<bool>();
 	m_size.x = data["size"]["x"].get<float>();
 	m_size.y = data["size"]["y"].get<float>();
@@ -26,7 +22,7 @@ bool BoxCollider::VInit(Json data)
 	return true;
 }
 
-sf::FloatRect BoxCollider::GetBounds()
+sf::FloatRect& BoxCollider::GetBounds()
 {
 	return m_bounds;
 }

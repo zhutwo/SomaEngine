@@ -19,11 +19,11 @@ public:
 	virtual std::string VGetName() const override { return g_Name; }
 
 	virtual bool VInit(Json data) override;
-
-	virtual void Update(sf::Time dt) override;
+	virtual void Update(sf::Time dt) override {}
+	virtual void Start() override {}
 
 	SpriteRenderer(std::shared_ptr<sf::Sprite> sprite);
-	void Render(sf::RenderTarget& target) const;
+	void Render(sf::RenderTarget& target);
 	void SetSprite(sf::Sprite sprite);
 	void SetSprite(std::shared_ptr<sf::Sprite> spritePtr);
 	void LoadSpriteFromTexture(sf::Texture texture);

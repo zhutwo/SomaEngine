@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "../Physics/PhysicsEngine.h"
 
 Scene::Scene()
 	: m_Name("NewScene")
@@ -23,6 +24,7 @@ SceneNodePtr Scene::DetachChild(const SceneNode& node)
 
 void Scene::Update(sf::Time dt)
 {
+	PhysicsEngine::GetSingleton().Update(dt);
 	m_Root.UpdateChildren(dt);
 }
 

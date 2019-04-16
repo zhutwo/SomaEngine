@@ -14,4 +14,6 @@ public:
 	virtual std::string VGetName() const override { return g_Name; }
 
 	virtual bool VInit(Json data) override;
+	virtual void Update(sf::Time dt) override {}
+	virtual void Start() override {}
 };

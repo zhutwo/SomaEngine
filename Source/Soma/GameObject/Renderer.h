@@ -15,6 +15,6 @@ public:
 	~Renderer() = default;
 
 	bool IsRenderer(void) const override { return true; }
-	virtual void Render(sf::RenderTarget& target) const = 0;
+	virtual void Render(sf::RenderTarget& target) = 0;
 	virtual sf::FloatRect GetBounds(void) const = 0;
 };

@@ -4,10 +4,12 @@
 
 class GameObject;
 class Rigidbody;
+class AudioSource;
 
 class PlayerController : public Component
 {
 	std::shared_ptr<Rigidbody>					m_rigidbody;
+	std::shared_ptr<AudioSource>				m_audio;
 	float										m_force;
 	SharedGameObjectPtr							m_bullet;
 

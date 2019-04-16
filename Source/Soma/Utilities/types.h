@@ -44,6 +44,7 @@
 
 class GameObject;
 class Component;
+class TransformComponent;
 class Scene;
 class SceneNode;
 
@@ -54,6 +55,8 @@ typedef unsigned int GameObjectId;
 
 const GameObjectId INVALID_GAMEOBJECT_ID = 0;
 const ComponentId INVALID_COMPONENT_ID = 0;
+
+typedef std::shared_ptr<TransformComponent> TransformPtr;
 
 typedef std::shared_ptr<Component> SharedComponentPtr;
 typedef std::weak_ptr<Component> WeakComponentPtr;

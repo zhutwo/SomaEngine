@@ -15,7 +15,7 @@ class GameObject : public SceneNode
 	friend class GameObjectFactory;
 
 public:
-	typedef std::map<ComponentId, SharedComponentPtr> ComponentMap;
+	typedef std::map<std::string, SharedComponentPtr> ComponentMap;
 	typedef std::vector<std::shared_ptr<Renderer>> RendererList;
 
 private:
@@ -27,8 +27,8 @@ private:
 
 public:
 
-	std::shared_ptr<TransformComponent>			m_transform;
-	std::shared_ptr<TransformComponent>			m_localTransform;
+	TransformPtr								m_transform;
+	TransformPtr								m_localTransform;
 
 public:
 	GameObject();
@@ -43,15 +43,15 @@ public:
 
 	std::string Tag(void) { return m_tag; }
 
-	//TransformComponent* GetTransform(void);
-	//TransformComponent* GetLocalTransform(void);
+	TransformPtr GetTransform(void);
+	TransformPtr GetLocalTransform(void);
 	
 	template <class ComponentType>
 	std::shared_ptr<ComponentType> GetComponent() 
 	{
 		for (ComponentMap::iterator it = m_components.begin(); it != m_components.end(); ++it)
 		{
-			if (typeid(it->second.get()) == typeid(ComponentType))
+			if (ComponentType* p = dynamic_cast<ComponentType*>(it->second.get()))
 			{
 				SharedComponentPtr pBase(it->second);
 				std::shared_ptr<ComponentType> pSub(std::static_pointer_cast<ComponentType>(pBase));  // cast to subclass version of the pointer
@@ -60,11 +60,12 @@ public:
 				//return pWeakSub;  // return the weak pointer
 			}
 		}
+		Helper::Print("Tried to get component not found");
 		return std::shared_ptr<ComponentType>();
 	}
 
 	//template <>
-	//std::shared_ptr<TransformComponent> GetComponent<TransformComponent>() { return std::make_shared<TransformComponent>(m_transform); }
+	//TransformPtr GetComponent<TransformComponent>() { return std::make_shared<TransformComponent>(m_transform); }
 
 	void AddComponent(SharedComponentPtr component);
 };

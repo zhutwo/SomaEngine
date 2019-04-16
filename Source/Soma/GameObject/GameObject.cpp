@@ -4,15 +4,17 @@
 #include "Renderer.h"
 
 GameObject::GameObject()
-{
-	m_name = "NewGameObject";
-}
+	: m_id(0)
+	, m_name("NewGameObject")
+	, m_transform(std::make_shared<TransformComponent>())
+	, m_localTransform(std::make_shared<TransformComponent>())
+{}
 
 GameObject::GameObject(GameObjectId id)
 	: m_id(id)
 	, m_name("NewGameObject")
-	, m_transform(new TransformComponent())
-	, m_localTransform(new TransformComponent())
+	, m_transform(std::make_shared<TransformComponent>())
+	, m_localTransform(std::make_shared<TransformComponent>())
 {}
 
 GameObject::~GameObject()
@@ -22,18 +24,10 @@ GameObject::~GameObject()
 
 bool GameObject::Init(Json data)
 {
-	// add log output
-	if (!data)
-	{
-		return false;
-	}
-
 	m_name = data["name"].get<std::string>();
 	m_tag = data["tag"].get<std::string>();
 
-	Json transformData = data["transform"];
-	m_localTransform->VInit(transformData);
-
+	m_localTransform->VInit(data["transform"]);
 	return true;
 }
 
@@ -69,24 +63,20 @@ void GameObject::Start()
 		it->second->Start();
 	}
 	SceneNode::Start();
-
-}
-/*
-TransformComponent* GameObject::GetTransform(void)
-{
-	auto p = *m_transform;
-	return &p;
 }
 
-TransformComponent * GameObject::GetLocalTransform(void)
+TransformPtr GameObject::GetTransform(void)
 {
-	auto p = *m_localTransform;
-	return &p;
+	return m_transform;
 }
-*/
+
+TransformPtr GameObject::GetLocalTransform(void)
+{
+	return m_localTransform;
+}
 void GameObject::AddComponent(SharedComponentPtr component)
 {
-	m_components.insert(std::make_pair(component->GetId(), component));
+	m_components.insert(std::make_pair(component->VGetName(), component));
 	if (component->IsRenderer())
 	{
 		m_renderers.push_back(std::dynamic_pointer_cast<Renderer>(component));

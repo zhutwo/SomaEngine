@@ -8,14 +8,9 @@ TransformComponent::TransformComponent()
 
 bool TransformComponent::VInit(Json data)
 {
-	if (!data)
-	{
-		return false;
-	}
-
 	Vector2 position;
-	position.x = data["localPosition"]["x"].get<float>();
-	position.y = data["localPosition"]["y"].get<float>();
+	position.x = 100.0f * data["localPosition"]["x"].get<float>();
+	position.y = -100.0f * data["localPosition"]["y"].get<float>();
 	setPosition(position);
 
 	Vector2 scale;
@@ -25,6 +20,6 @@ bool TransformComponent::VInit(Json data)
 
 	float rotation = data["rotation"].get<float>();
 	setRotation(rotation);
-
+	
 	return true;
 }

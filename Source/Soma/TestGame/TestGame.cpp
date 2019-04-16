@@ -1,82 +1,38 @@
 
 #include "SomaStd.h"
 #include "../Scene/Scene.h"
-#include "../GameObject/GameObject.h"
-#include "../GameObject/SpriteRenderer.h"
 #include "../Scene/SceneFactory.h"
-#include "SFML/Graphics.hpp"
+#include "../Utilities/ResourceHolder.h"
 #include <fstream>
-#include "nlohmann/json.hpp"
 
 class TestGame
 {
 public:
-	Scene testScene;
 	SharedScenePtr pScene;
-	std::vector<std::shared_ptr<sf::Sprite>> spriteList;
-	std::vector<std::shared_ptr<sf::Texture>> textureList;
 
 	TestGame()
 	{
 	}
 	~TestGame() = default;
 
-	void BuildSceneJSON()
-	{
-		std::ifstream stream("TestScene.json");
-		nlohmann::json json = nlohmann::json::parse(stream);
-		//stream >> json;
-
-		//SceneFactory factory;
-		//pScene = factory.CreateScene(json);
+	void Start() {
+		pScene->Start();
 	}
 
-	void BuildScene()
+	void MainLoop(sf::Time dt, sf::RenderTarget &target)
 	{
-		std::shared_ptr<GameObject> background = std::make_shared<GameObject>(1);
+		pScene->Update(dt);
+		pScene->Render(target);
+	}
 
-		std::shared_ptr<sf::Texture> bgtex = std::make_shared<sf::Texture>();
-		textureList.push_back(bgtex);
-		std::shared_ptr<sf::Sprite> bgsprite = std::make_shared<sf::Sprite>();
-		spriteList.push_back(bgsprite);
-		
-		if (!bgtex->loadFromFile("Space.png"))
-		{
-			MessageBox(NULL,
-				_T("Failed to load background texture"),
-				_T("SomaEngine"),
-				NULL);
-		}
+	void BuildSceneJSON()
+	{
+		ResourceHolder::GetSingleton().LoadResources();
 
-		bgsprite->setTexture(*bgtex);
-		std::shared_ptr<SpriteRenderer> bgsr = std::make_shared<SpriteRenderer>();
-		bgsr->SetSprite(*bgsprite);
-		bgsr->SetId(1);
-		
-		background->AddComponent(std::static_pointer_cast<Component>(bgsr));
-		testScene.AttachChild(std::static_pointer_cast<SceneNode>(background));
-		
-		std::shared_ptr<GameObject> entities = std::make_shared<GameObject>(2);
-		
-		std::shared_ptr<sf::Texture> entex = std::make_shared<sf::Texture>();
-		textureList.push_back(entex);
-		std::shared_ptr<sf::Sprite> ensprite = std::make_shared<sf::Sprite>();
-		spriteList.push_back(ensprite);
+		std::ifstream stream("TestScene.json");
+		Json json = Json::parse(stream);
 
-		if (!entex->loadFromFile("Ship.png"))
-		{
-			MessageBox(NULL,
-				_T("Failed to load entities texture"),
-				_T("SomaEngine"),
-				NULL);
-		}
-
-		ensprite->setTexture(*entex);
-		std::shared_ptr<SpriteRenderer> ensr = std::make_shared<SpriteRenderer>();
-		ensr->SetSprite(*ensprite);
-		ensr->SetId(2);
-		
-		entities->AddComponent(std::static_pointer_cast<Component>(ensr));
-		testScene.AttachChild(std::static_pointer_cast<SceneNode>(entities));
+		SceneFactory factory;
+		pScene = factory.CreateScene(json);
 	}
 };
