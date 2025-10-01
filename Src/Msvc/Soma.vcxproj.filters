@@ -56,9 +56,6 @@
     <ClInclude Include="..\Main\SomaApp.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="..\Main\SomaAppStd.h">
-      <Filter>Main</Filter>
-    </ClInclude>
     <ClInclude Include="..\Scene\Scene.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -103,7 +100,6 @@
     <ClCompile Include="..\Main\Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="SomaStd.cpp" />
     <ClCompile Include="..\EventManager\EventManager.cpp">
       <Filter>EventManager</Filter>
     </ClCompile>
@@ -111,9 +107,6 @@
       <Filter>EventManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Main\SomaApp.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Main\SomaAppStd.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="..\Scene\Scene.cpp">

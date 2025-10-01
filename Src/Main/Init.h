@@ -8,7 +8,6 @@ Soma Initialization
 #include <direct.h>
 #include <string>
 #include "SomaStd.h"
-#include "SomaAppStd.h"
 
 class Init
 {
