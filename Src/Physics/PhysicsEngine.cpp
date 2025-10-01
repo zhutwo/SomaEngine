@@ -8,7 +8,7 @@ void PhysicsEngine::IntegrateBodies(sf::Time dt) {
 		rigidBodies[i].lock()->Integrate(dt);
 	}
 }
-/*
+
 void PhysicsEngine::CheckCollisions() {
 	for (int i = 0; i < rigidBodies.size(); i++)
 	{
@@ -145,4 +145,3 @@ void PhysicsEngine::PositionalCorrection(CollisionPair c) {
 	temp += invMassB * correction;
 	c.rigidBodyA.lock()->Transform().lock()->setPosition(temp);
 }
-*/

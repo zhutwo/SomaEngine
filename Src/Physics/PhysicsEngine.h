@@ -42,7 +42,6 @@ public:
 
 	void IntegrateBodies(sf::Time dt);
 
-	/*
 	bool IsGrounded(Rigidbody& rigidBody) {
 		foreach(PhysicsRBody rb in rigidBodies)
 		{
@@ -59,17 +58,16 @@ public:
 		}
 		return false;
 	}
-	*/
-	//void CheckCollisions();
 
-	//void ResolveCollisions();
+	void CheckCollisions();
 
-	//void PositionalCorrection(CollisionPair c);
+	void ResolveCollisions();
+
+	void PositionalCorrection(CollisionPair c);
 
 	void Update(sf::Time dt) {
-		// .... 
 		IntegrateBodies(dt);
-		//CheckCollisions();
-		//ResolveCollisions();
+		CheckCollisions();
+		ResolveCollisions();
 	}
 };
