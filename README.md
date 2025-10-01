@@ -1,3 +1,3 @@
 # SomaEngine
 
-Game engine written in C++ as a school project. Here for archival purposes, not actively maintained.
+Game engine written from scratch in C++ for a school project. Here for archival purposes, not actively maintained.
