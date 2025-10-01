@@ -2,7 +2,7 @@
 
 #include <strstream>
 #include "SomaStd.h"
-#include "../3rdParty/FastDelegate/FastDelegate.h"
+#include "../../Lib/FastDelegate/FastDelegate.h" // TODO: add path to vcxproj so only need FastDelegate.h
 
 class IEventData;
 
